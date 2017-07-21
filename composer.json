@@ -1,0 +1,69 @@
+{
+    "name": "nrel/dam",
+    "description": "Dam profile is the de-facto Drupal swiss army knife for Digital Asset Management.",
+    "type": "drupal-profile",
+    "homepage": "https://github.com/NREL/dam",
+    "authors": [
+        {
+            "name": "Damon Haley (dhaley)",
+            "email": "damon.haley@nrel.gov",
+            "role": "Maintainer"
+        },
+        {
+            "name": "Shaun Laws (slaws)",
+            "email": "shaun.laws@nrel.gov",
+            "role": "Co-maintainer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/NREL/dam/issues"
+    },
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "drush/drush": "^8.0",
+        "drupal/drupal-extension": "^3.2",
+        "drupal-composer/drupal-scaffold": "^2.0.0",
+        "behat/behat": "^3.0",
+        "drupal/coder": "^2.0",
+        "phing/phing": "^2.14",
+        "behat/mink": "~1.7",
+        "behat/mink-goutte-driver": "~1.2",
+        "jcalderonzumba/gastonjs": "~1.0.2",
+        "mikey179/vfsStream": "~1.2",
+        "phpunit/phpunit": "~4.8",
+        "symfony/css-selector": "~2.8",
+        "drupal/devel": "^1.0",
+        "squizlabs/php_codesniffer": "2.*",
+        "se/selenium-server-standalone": "^2.53",
+        "drupal/console": "^1.0",
+        "jakoch/phantomjs-installer": "1.9.8",
+        "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
+        "composer/composer": "^1.4"
+    },
+    "config": {
+        "bin-dir": "bin/"
+    },
+    "extra": {
+        "packagist.drupal-composer.org": {
+            "discover-make-files": false
+        },
+        "installer-paths": {
+            "docroot/core": [
+                "type:drupal-core"
+            ],
+            "modules/contrib/{$name}": [
+                "type:drupal-module"
+            ]
+        }
+    },
+  "patches": {
+            "drupal/page_manager": {
+                "2874851 - Clicking a variant in page manager does not open the variant config":
+              "https://www.drupal.org/files/issues/page_manager-2874851-8.patch"
+            }
+  },
+  "require": {
+    }
+}
