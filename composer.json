@@ -41,9 +41,12 @@
             "docroot/libraries/{$name}": [
                 "type:drupal-library"
             ],
-            "docroot/profiles/lightning/modules/contrib/{$name}": [
+            "docroot/profiles/contrib/{$name}": [
                 "type:drupal-module"
             ]
         }
+    },
+    "require": {
+        "nrel/communications": "~1.0.2"
     }
 }
