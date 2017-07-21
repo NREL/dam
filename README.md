@@ -1,24 +1,24 @@
 [![Build Status](https://travis-ci.org/acquia/lightning.svg?branch=8.x-1.x)](https://travis-ci.org/acquia/lightning)
 
-# Drupal Lightning
-Lightning's mission is to enable developers to create great authoring
+# Drupal Dam
+Dam's mission is to enable developers to create great authoring
 experiences and empower editorial teams.
 
-You'll notice that Lightning appears very sparse out of the box. This is by
+You'll notice that Dam appears very sparse out of the box. This is by
 design. We want to empower editorial teams and enable developers to jump-start
 their site builds. That means that a developer should never have to undo
-something that Lightning has done. So we started with a blank slate and
+something that Dam has done. So we started with a blank slate and
 justified each addition from there.
 
-## Installing Lightning
-The preferred way to install Lightning is using our
+## Installing Dam
+The preferred way to install Dam is using our
 [Composer-based project template][template]. It's easy!
 
 ```
 $ composer create-project acquia/lightning-project MY_PROJECT
 ```
 
-If you don't want to use Composer, you can install Lightning the traditional way
+If you don't want to use Composer, you can install Dam the traditional way
 by downloading a tarball from our
 [drupal.org project page](https://www.drupal.org/project/lightning). (Please
 note that the tarball does not contain any experimental features.)
@@ -28,7 +28,7 @@ Lightning as its base profile][sub-profile documentation]. Lightning includes a
 Drupal Console command (`lightning:subprofile`) which will generate a
 sub-profile for you.
 
-## What Lightning Does
+## What Dam Does
 Through custom modules and configuration, Lightning aims to target four
 functional areas:
 
@@ -50,8 +50,8 @@ The current version of media includes the following functionality:
 * Ability to embed tweets, Instagrams, and YouTube/Vimeo videos directly into
   CKEditor by pasting the video URL
 
-#### Extending Lightning Media (Contributed Modules)
-Drupal community members have contributed several modules which integrate Lightning Media with additional third-party media services. These modules are not packaged with Lightning or maintained by Acquia, but they are stable and you can use them in your Lightning site:
+#### Extending Dam Media (Contributed Modules)
+Drupal community members have contributed several modules which integrate Dam Media with additional third-party media services. These modules are not packaged with Dam or maintained by Acquia, but they are stable and you can use them in your Dam site:
 
   * [Facebook](https://www.drupal.org/project/lightning_media_facebook)
   * [Imgur](https://www.drupal.org/project/lightning_media_imgur)
