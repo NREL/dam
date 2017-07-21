@@ -15,7 +15,7 @@ The preferred way to install Dam is using our
 [Composer-based project template][template]. It's easy!
 
 ```
-$ composer create-project acquia/lightning-project MY_PROJECT
+$ composer create-project nrel/communications-project MY_PROJECT
 ```
 
 If you don't want to use Composer, you can install Dam the traditional way
