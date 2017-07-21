@@ -1,0 +1,6 @@
+name: Ipsum
+type: module
+description: 'Provides a service to generate dummy filler text.'
+package: Development
+core: 8.x
+configure: ipsum.settings

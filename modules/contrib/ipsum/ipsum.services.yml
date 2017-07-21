@@ -1,0 +1,4 @@
+services:
+  plugin.manager.ipsum:
+    class: Drupal\ipsum\Plugin\Type\IpsumPluginManager
+    arguments: ['@container.namespaces', '@cache.default', '@language_manager', '@module_handler']

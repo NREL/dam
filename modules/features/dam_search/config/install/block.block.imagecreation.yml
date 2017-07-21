@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.image_creation
+  module:
+    - facets
+    - system
+  theme:
+    - nrel_bootstrap
+id: imagecreation
+theme: nrel_bootstrap
+region: sidebar_second
+weight: 0
+provider: null
+plugin: 'facet_block:image_creation'
+settings:
+  id: 'facet_block:image_creation'
+  label: 'Image creation'
+  provider: facets
+  label_display: visible
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }

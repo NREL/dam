@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.focal_length
+  module:
+    - facets
+    - system
+  theme:
+    - nrel_bootstrap
+id: focallength
+theme: nrel_bootstrap
+region: sidebar_second
+weight: -4
+provider: null
+plugin: 'facet_block:focal_length'
+settings:
+  id: 'facet_block:focal_length'
+  label: 'Filter by Focal length'
+  provider: facets
+  label_display: visible
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }

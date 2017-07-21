@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.dam_bulk_upload.field_bulk_image_upload
+    - node.type.dam_bulk_upload
+  module:
+    - user
+id: node.dam_bulk_upload.default
+targetEntityType: node
+bundle: dam_bulk_upload
+mode: default
+content:
+  field_bulk_image_upload:
+    weight: 104
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden: {  }

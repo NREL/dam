@@ -1,0 +1,13 @@
+name: 'NREL Image Gallery'
+mail: damon.haley@nrel.gov
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: ktHPJRXFJay1VCntbOvi_LDacwD0sk_fpefFiPst0I0

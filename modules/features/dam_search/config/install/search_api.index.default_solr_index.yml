@@ -1,0 +1,188 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_aperture_value
+    - field.storage.media.field_camera_model
+    - field.storage.media.field_exposure_time
+    - field.storage.media.field_focal_length
+    - field.storage.media.field_height
+    - field.storage.media.image
+    - field.storage.media.field_image_creation_datetime_te
+    - field.storage.media.field_iso
+    - field.storage.media.field_mime
+    - field.storage.media.field_width
+    - search_api.server.default_solr_server
+    - core.entity_view_mode.node.search_index
+  module:
+    - search_api
+    - node
+    - media_entity
+id: default_solr_index
+name: 'Default Solr content index'
+description: 'Default content index created by the Solr Search Defaults module'
+read_only: false
+field_settings:
+  rendered_item:
+    label: 'Rendered item'
+    property_path: rendered_item
+    type: text
+    configuration:
+      roles:
+        anonymous: anonymous
+      view_mode:
+        'entity:node':
+          article: search_index
+          page: search_index
+  moderation_state:
+    label: 'Moderation state'
+    datasource_id: 'entity:node'
+    property_path: moderation_state
+    type: string
+  field_aperture_value:
+    label: 'Aperture value'
+    datasource_id: 'entity:media'
+    property_path: field_aperture_value
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_aperture_value
+  field_camera_model:
+    label: 'Camera model'
+    datasource_id: 'entity:media'
+    property_path: field_camera_model
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_camera_model
+  changed_1:
+    label: Changed
+    datasource_id: 'entity:media'
+    property_path: changed
+    type: date
+  created_1:
+    label: Created
+    datasource_id: 'entity:media'
+    property_path: created
+    type: date
+  field_exposure_time:
+    label: 'Exposure time'
+    datasource_id: 'entity:media'
+    property_path: field_exposure_time
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_exposure_time
+  field_focal_length:
+    label: 'Focal length'
+    datasource_id: 'entity:media'
+    property_path: field_focal_length
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_focal_length
+  field_height:
+    label: Height
+    datasource_id: 'entity:media'
+    property_path: field_height
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_height
+  image:
+    label: Image
+    datasource_id: 'entity:media'
+    property_path: image
+    type: integer
+    dependencies:
+      config:
+        - field.storage.media.image
+  field_image_creation_datetime_te:
+    label: 'Image creation datetime text'
+    datasource_id: 'entity:media'
+    property_path: field_image_creation_datetime_te
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_image_creation_datetime_te
+  field_iso:
+    label: Iso
+    datasource_id: 'entity:media'
+    property_path: field_iso
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_iso
+  field_mime:
+    label: MIME
+    datasource_id: 'entity:media'
+    property_path: field_mime
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_mime
+  field_width:
+    label: Width
+    datasource_id: 'entity:media'
+    property_path: field_width
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_width
+  status:
+    label: 'Publishing status'
+    datasource_id: 'entity:media'
+    property_path: status
+    type: boolean
+  moderation_state_1:
+    label: 'Moderation state'
+    datasource_id: 'entity:media'
+    property_path: moderation_state
+    type: string
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: true
+      selected: {  }
+  'entity:media':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url:
+    weights:
+      preprocess_index: -30
+  aggregated_field:
+    weights:
+      add_properties: 20
+  html_filter:
+    weights:
+      preprocess_index: -3
+      preprocess_query: -6
+    fields:
+      - rendered_item
+    title: true
+    alt: true
+    tags:
+      h1: 5
+      h2: 3
+      h3: 2
+      string: 2
+      b: 2
+    all_fields: false
+  rendered_item:
+    weights:
+      add_properties: 0
+      pre_index_save: -10
+tracker_settings:
+  default: {  }
+options:
+  index_directly: true
+  cron_limit: 50
+server: default_solr_server

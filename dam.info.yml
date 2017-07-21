@@ -1,0 +1,33 @@
+name: 'dam'
+type: profile
+description: 'dam communications lightning subprofile'
+core: '8.x'
+# Optional: Declare your installation profile as a distribution
+# This will make the installer auto-select this installation profile.
+# The distribution_name property is used in the installer and other places as
+# a label for the software being installed.
+distribution:
+  name: DAM
+dependencies:
+    - kint
+    - devel_generate
+    - realistic_dummy_content
+    - webprofiler
+    # - default_content
+    - externalauth
+    # - simplesamlphp_auth
+    - page_manager_ui
+    - imagemagick
+    - image_effects
+    - jquery_colorpicker
+    - file_entity
+    - file_browser
+    # - file_download_tracker
+    - plupload_widget
+    # - plupload_gallery
+    - linkit_media_file_direct
+    - views_bulk_edit
+    - vbo_export
+base profile:
+  name: communications
+version: '8.x-1.00'

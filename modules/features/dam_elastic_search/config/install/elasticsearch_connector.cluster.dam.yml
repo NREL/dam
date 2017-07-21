@@ -1,0 +1,17 @@
+langcode: en
+status: '1'
+dependencies: {  }
+cluster_id: dam
+name: dam
+url: 'http://localhost:9200'
+options:
+  multiple_nodes_connection: false
+  use_authentication: 0
+  authentication_type: Basic
+  username: ''
+  password: ''
+  timeout: '3'
+  elasticsearch_aws_connector_aws_region: ''
+  elasticsearch_aws_connector_aws_authentication_type: aws_role
+  elasticsearch_aws_connector_aws_credentials_key: ''
+  elasticsearch_aws_connector_aws_credentials_secret: ''

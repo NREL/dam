@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains dam_slider.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dam_slider_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dam_slider module.
+    case 'help.page.dam_slider':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('DAM Slideshow.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dam_slider_theme() {
+  return [
+    'dam_slider' => [
+      'render element' => 'children',
+    ],
+  ];
+}

@@ -1,0 +1,15 @@
+ipsum.settings:
+  path: '/admin/config/development/ipsum'
+  defaults:
+    _form: 'Drupal\ipsum\Form\SettingsForm'
+    _title: 'Ipsum'
+  requirements:
+    _permission: 'administer site configuration'
+
+ipsum.report:
+  path: '/admin/reports/ipsum'
+  defaults:
+    _content: '\Drupal\ipsum\Controller\ReportController::content'
+    _title: 'Ipsum providers'
+  requirements:
+    _permission: 'view site reports'

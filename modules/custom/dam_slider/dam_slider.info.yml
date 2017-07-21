@@ -1,0 +1,18 @@
+name: dam_slider
+description: 'DAM Slideshow.'
+type: module
+core: 8.x
+package: DAM
+dependencies:
+  - blazy_ui
+  - block
+  - communications_media_entity_image
+  - image
+  - media_entity
+  - slick_extras
+  - slick_views
+  - system
+  - text
+  - user
+  - views
+version: 8.x-1.0

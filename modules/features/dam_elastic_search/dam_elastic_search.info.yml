@@ -1,0 +1,11 @@
+name: dam_elastic_search
+type: module
+description: 'DAM Elasticsearch Connector.'
+core: 8.x
+package: Custom
+dependencies:
+  # - elasticsearch_aws_connector
+  - elasticsearch_connector
+  - search_api_autocomplete
+  - facets
+version: 8.x-1.0

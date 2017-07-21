@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.exposure_time
+  module:
+    - facets
+    - system
+  theme:
+    - nrel_bootstrap
+id: exposuretime
+theme: nrel_bootstrap
+region: sidebar_second
+weight: -3
+provider: null
+plugin: 'facet_block:exposure_time'
+settings:
+  id: 'facet_block:exposure_time'
+  label: 'Filter by Exposure time'
+  provider: facets
+  label_display: visible
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }

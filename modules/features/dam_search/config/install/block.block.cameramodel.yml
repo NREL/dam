@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.camera_model
+  module:
+    - facets
+    - system
+  theme:
+    - nrel_bootstrap
+id: cameramodel
+theme: nrel_bootstrap
+region: sidebar_second
+weight: -6
+provider: null
+plugin: 'facet_block:camera_model'
+settings:
+  id: 'facet_block:camera_model'
+  label: 'Filter by Camera model'
+  provider: facets
+  label_display: visible
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }

@@ -1,0 +1,20 @@
+name: dam_search
+description: 'DAM Apache Solr search configuration'
+type: module
+core: 8.x
+dependencies:
+  - block
+  - communications_media_entity_image
+  - facets
+  - media_entity
+  - node
+  - search_api
+  - search_api_autocomplete
+  - search_api_db
+  - search_api_solr
+  - system
+  - taxonomy
+  - user
+  - views
+package: DAM
+version: 8.x-1.0

@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.file_type
+  module:
+    - facets
+    - system
+  theme:
+    - nrel_bootstrap
+id: filetype
+theme: nrel_bootstrap
+region: sidebar_second
+weight: -9
+provider: null
+plugin: 'facet_block:file_type'
+settings:
+  id: 'facet_block:file_type'
+  label: 'Filter by File Type'
+  provider: facets
+  label_display: visible
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }

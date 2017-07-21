@@ -1,0 +1,113 @@
+<?php
+
+/**
+ * @file
+ * Install and uninstall functions for the communications_person module.
+ */
+use Drupal\node\Entity\Node;
+use Drupal\file\Entity\File;
+use Drupal\media_entity\Entity\Media;
+use Drupal\media_entity\MediaInterface;
+use Drupal\Component\Utility\Random;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
+
+use Drupal\Component\Plugin\PluginBase;
+use Drupal\Core\Config\Config;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Component\Utility\NestedArray;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+
+/**
+ * Implements hook_install().
+ */
+function dam_content_install() {
+  // To create a new media entity:
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $bundle = $entity_type_manager
+          ->getStorage('media_bundle')
+          ->loadByProperties(['type' => 'image']);
+
+  $i = 1;
+  while ($i <= 30) {
+    $stock_image = \Drupal::moduleHandler()->getModule('dam_content')->getPath() . "/images/$i.jpg";
+    $filesystem = \Drupal::service('file_system');
+    $destination = file_unmanaged_copy($stock_image, 'public://' . $filesystem->basename($stock_image));
+
+    if ($destination) {
+      // Create file entity.
+      $file = File::create();
+      $file->setFileUri($destination);
+      $file->setOwnerId(\Drupal::currentUser()->id());
+      $file->setMimeType('image/' . pathinfo($destination, PATHINFO_EXTENSION));
+      $file->setFileName($filesystem->basename($destination));
+      $file->setPermanent();
+      $file->save();
+
+      // Create media entity and save.
+      $media_image = $entity_type_manager->getStorage('media')->create([
+                       'bundle' => 'image',
+                       $bundle['image']->getTypeConfiguration()['source_field'] => $file,
+                     ]);
+      $media_image->save();
+    }
+    $i++;
+  }
+
+  $node = Node::create([
+            'type' => 'page',
+            'uid' => 1,
+            'revision' => 0,
+            'status' => TRUE,
+            'promote' => 0,
+            'created' => time(),
+            'langcode' => 'en',
+            'title' => 'Help',
+          ]);
+
+  // $node->set('body', [
+  //     'value' => '<h1>Welcome to My Page!</h1>',
+  //     'format' => 'basic_html'
+  //   ]);
+
+  $random = new Drupal\Component\Utility\Random();
+  $node->set('body', $random->paragraphs(6));
+  $node->save();
+
+  $source = '/node/' . $node->get('nid')->value;
+  \Drupal::service('path.alias_storage')->save($source, '/help', 'en');
+
+
+  // $destination = 'public://my_module-images-2016';
+  // file_prepare_directory($destination, FILE_CREATE_DIRECTORY);
+
+  // $img_source = sprintf('%s/private/assets/testimg.jpg', \Drupal::root());
+  // $img = null;
+
+  // if (is_readable($img_source)) {
+  //   $data = file_get_contents($img_source);
+
+  //   $img = file_save_data(
+  //     $data,
+  //     $destination . '/testimg.jpg',
+  //     FILE_EXISTS_REPLACE
+  //   );
+  // }
+
+  //   if ($img) {
+  //     $node->get('field_main_image')->appendItem($img);
+  //   }
+
+  // Navigation Menu Items
+  $link = MenuLinkContent::create([
+            'title'      => 'Help',
+            'link'       => ['uri' => 'internal:/help'],
+            'menu_name'  => 'main',
+            'weight'     => 10,
+          ]);
+  $link->save();
+}

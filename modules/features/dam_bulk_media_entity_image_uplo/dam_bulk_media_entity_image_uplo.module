@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains dam_bulk_media_entity_image_uplo.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dam_bulk_media_entity_image_uplo_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dam_bulk_media_entity_image_uplo module.
+    case 'help.page.dam_bulk_media_entity_image_uplo':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Functionality for bulk uploading images to media entity images.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dam_bulk_media_entity_image_uplo_theme() {
+  return [
+    'dam_bulk_media_entity_image_uplo' => [
+      'render element' => 'children',
+    ],
+  ];
+}

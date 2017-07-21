@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the profilename install profile.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * Perform actions to set up the site for this profile.
+ *
+ * @see system_install()
+ */
+function dam_install() {
+  // First, do everything in dam profile.
+  // include_once DRUPAL_ROOT . '/core/profiles/dam/dam.install';
+  // dam_install();
+
+  // Can add code in here to make nodes, terms, etc.
+
+  $modules = [
+    'communications_media_entity_image',
+    'dam_content',
+    'dam_search',
+    //    'dam_elastic_search',
+    'dam_slider',
+    'dam_bulk_media_entity_image_uplo'
+  ];
+
+  foreach ($modules as $module) {
+    \Drupal::service('module_installer')->install([$module]);
+  }
+
+}

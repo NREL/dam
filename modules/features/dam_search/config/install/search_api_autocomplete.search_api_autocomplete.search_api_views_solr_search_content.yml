@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.index.default_solr_index
+id: search_api_views_solr_search_content
+label: search_api_views_solr_search_content
+index_id: default_solr_index
+suggester: server
+suggester_settings: {  }
+type: views
+type_settings: {  }
+options: {  }

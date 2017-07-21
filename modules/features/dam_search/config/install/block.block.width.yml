@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.width
+  module:
+    - facets
+    - system
+  theme:
+    - nrel_bootstrap
+id: width
+theme: nrel_bootstrap
+region: sidebar_second
+weight: 1
+provider: null
+plugin: 'facet_block:width'
+settings:
+  id: 'facet_block:width'
+  label: 'Filter by Width'
+  provider: facets
+  label_display: visible
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }

@@ -1,0 +1,34 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - media_entity.bundle.image
+  module:
+    - dropzonejs_eb_widget
+    - media_entity
+name: dam
+label: 'DAM media entity image browser'
+display: iframe
+display_configuration:
+  width: '650'
+  height: '500'
+  link_text: 'Select entities'
+  auto_open: false
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: single
+widget_selector_configuration: {  }
+widgets:
+  f6ca5766-2088-4bc3-a0be-18cd4081a13d:
+    settings:
+      media_entity_bundle: image
+      upload_location: 'public://[date:custom:Y]-[date:custom:m]'
+      dropzone_description: 'Drop files here to upload them'
+      max_filesize: 32M
+      extensions: 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp'
+      submit_text: 'Select entities'
+      auto_select: false
+    uuid: f6ca5766-2088-4bc3-a0be-18cd4081a13d
+    weight: 1
+    label: Upload
+    id: dropzonejs_media_entity

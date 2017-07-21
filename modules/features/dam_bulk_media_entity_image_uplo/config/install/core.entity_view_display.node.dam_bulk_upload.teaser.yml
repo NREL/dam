@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.dam_bulk_upload.field_bulk_image_upload
+    - node.type.dam_bulk_upload
+  module:
+    - user
+id: node.dam_bulk_upload.teaser
+targetEntityType: node
+bundle: dam_bulk_upload
+mode: teaser
+content:
+  links:
+    weight: 100
+    region: content
+hidden:
+  field_bulk_image_upload: true

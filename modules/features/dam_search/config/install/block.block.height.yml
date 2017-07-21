@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.height
+  module:
+    - facets
+    - system
+  theme:
+    - nrel_bootstrap
+id: height
+theme: nrel_bootstrap
+region: sidebar_second
+weight: 2
+provider: null
+plugin: 'facet_block:height'
+settings:
+  id: 'facet_block:height'
+  label: 'Filter by Height'
+  provider: facets
+  label_display: visible
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }

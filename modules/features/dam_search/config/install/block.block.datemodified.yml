@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.date_modified
+  module:
+    - facets
+    - system
+  theme:
+    - nrel_bootstrap
+id: datemodified
+theme: nrel_bootstrap
+region: sidebar_second
+weight: -1
+provider: null
+plugin: 'facet_block:date_modified'
+settings:
+  id: 'facet_block:date_modified'
+  label: 'Filter by Date Modified'
+  provider: facets
+  label_display: visible
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }

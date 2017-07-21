@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * Install and uninstall functions for the communications_person module.
+ */
+
+
+/**
+ * Implements hook_install().
+ */
+function dam_slider_install() {
+
+}
