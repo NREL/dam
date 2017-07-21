@@ -22,10 +22,17 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require-dev": {
+
     },
     "config": {
         "bin-dir": "bin/"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
     "extra": {
         "installer-paths": {
             "docroot/core": [
@@ -37,10 +44,6 @@
             "docroot/profiles/lightning/modules/contrib/{$name}": [
                 "type:drupal-module"
             ]
-        },
-        "patches": {
-        },
-    }
-    "require": {
+        }
     }
 }
