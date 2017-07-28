@@ -14,12 +14,12 @@
     ],
     "uuid":[
         {
-            "value":"550f86ad-aa11-4047-953f-636d42889f85"
+            "value":"57d0841a-c9bb-496a-bc79-8073fe815e34"
         }
     ],
     "vid":[
         {
-            "value":"tags"
+            "value":"structured_keywords"
         }
     ],
     "langcode":[
@@ -29,7 +29,7 @@
     ],
     "name":[
         {
-            "value":"A tag"
+            "value":"basic sciences"
         }
     ],
     "description":[
@@ -44,7 +44,8 @@
     ],
     "changed":[
         {
-            "value":"1381645869"
+            "value":"1501184733"
         }
-    ]
+    ],
 }
+
