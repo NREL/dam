@@ -1,0 +1,102 @@
+<?php
+use Drupal\Core\Entity\EntityFieldManagerInterface;
+
+/**
+ * @file
+ *   PlUpload Gallery module hooks
+ */
+
+/**
+ *  Implementation of hook_form_alter()
+ *
+ */
+function plupload_gallery_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  $routeName = \Drupal::request()->get(Symfony\Cmf\Component\Routing\RouteObjectInterface::ROUTE_NAME);
+  if ($routeName == 'entity.node.plupload_gallery_uploads') {
+    // Hide the submit button because we simply don't need it
+    $form['actions']['#access'] = FALSE;
+    // Also hide the current images
+    // dpm($form['field_case_gallery']['widget']);
+    // $form['field_case_gallery']['widget']['#access'] = FALSE;
+    //dpm($form);
+  }
+
+}
+
+/**
+ * Implements hook_entity_form_display_alter().
+ */
+function plupload_gallery_entity_form_display_alter(\Drupal\Core\Entity\Display\EntityFormDisplayInterface
+                                                   &$form_display, $context) {
+
+  $routeName = \Drupal::request()->get(Symfony\Cmf\Component\Routing\RouteObjectInterface::ROUTE_NAME);
+
+  switch ($routeName) {
+    case 'entity.node.plupload_gallery_manage':
+    case 'entity.node.plupload_gallery_uploads':
+      $display_name = plupload_gallery_get_mode($routeName, $context);
+      // Load the right entity form display. Works for any entity / bundle.
+      $id = $context['entity_type'] . '.' . $context['bundle'] . '.' . $display_name;
+      $storage = \Drupal::entityManager()->getStorage('entity_form_display');
+      $form_display = $storage->load($id);
+  }
+}
+
+/**
+ * @param $view_mode
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ * @param $context
+ */
+function plupload_gallery_entity_view_mode_alter(&$view_mode, Drupal\Core\Entity\EntityInterface $entity, $context) {
+
+  $routeName = \Drupal::request()->get(Symfony\Cmf\Component\Routing\RouteObjectInterface::ROUTE_NAME);
+
+  if ($routeName == 'entity.node.plupload_gallery_gallery') {
+    // Use the display mode set for this content type to display the gallery
+    $context = array(
+      'entity_type' => $entity->getEntityTypeId(),
+      'bundle' => $entity->bundle()
+    );
+    $new_view_mode = plupload_gallery_get_mode($routeName, $context);
+    dpm($new_view_mode);
+    dpm($entity->bundle());
+    // If we are using the entity reference widget, then the target entity / bundle may also be rendering on this
+    // page so we only change the view mode if we find one
+    if ($new_view_mode) {
+      $view_mode = $new_view_mode;
+    }
+  }
+}
+
+/**
+ * Helper function to supply view/form mode for tabs
+ *
+ * @param $routeName
+ * @param $context
+ * @return mixed
+ */
+function plupload_gallery_get_mode($routeName, $context) {
+  $displayManager = \DRUPAL::service('entity_display.repository');
+  $form_modes = $displayManager->getFormModeOptionsByBundle($context['entity_type'],  $context['bundle']);
+  foreach ($form_modes as $mode => $setting) {
+    $display = entity_get_form_display($context['entity_type'],  $context['bundle'], $mode);
+    $settings = $display->getComponents();
+    foreach ($settings as $widget) {
+      if ($widget['type'] == 'plupload_image_widget' || $widget['type'] == 'plupload_gallery_entity_reference_widget') {
+        switch ($routeName) {
+          case 'entity.node.plupload_gallery_uploads':
+            return $widget['settings']['uploads_form_mode'];
+
+          case 'entity.node.plupload_gallery_manage':
+            return $widget['settings']['manage_form_mode'];
+
+          case 'entity.node.plupload_gallery_gallery':
+            return $widget['settings']['gallery_view_mode'];
+
+        }
+      }
+    }
+  }
+  return FALSE;
+}
+

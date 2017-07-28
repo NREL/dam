@@ -1,0 +1,13 @@
+name: 'Plupload Gallery'
+description: 'Provides a plupload gallery.'
+type: module
+package: Media
+# core: 8.x
+dependencies:
+  - plupload_widget
+
+# Information added by Drupal.org packaging script on 2016-09-02
+version: '8.x-1.0-alpha2'
+core: '8.x'
+project: 'plupload_gallery'
+datestamp: 1472854440

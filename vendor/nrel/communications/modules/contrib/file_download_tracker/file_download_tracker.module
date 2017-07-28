@@ -1,0 +1,67 @@
+<?php
+
+/**
+ * @file
+ * Contains file_download_tracker.module.
+ */
+
+use Drupal\file_download_tracker\FileDownloadTracker;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Database\Query;
+
+/**
+ * Implements hook_help().
+ */
+function file_download_tracker_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the file_download_tracker module.
+    case 'help.page.file_download_tracker':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module is used to track the files which are getting downloaded from the site.<br>
+         It generates report for per file and per page downloads and details regarding the users, downloading the files and on whcih pages.<br>
+         For per file, this will provide details like file name and number of times that file getting downloaded.<br>
+         For per page, this will provide details like page name and number of files downloaded from that particular page.') . '</p>';
+      return $output;
+      default:
+  }
+
+}
+
+/**
+ * Implements hook_file_transfer().
+ */
+function file_download_tracker_file_transfer($uri, array $headers) {
+    $current_uri = \Drupal::service('path.current')->getPath();
+    $exp = explode("/", $current_uri);
+    $fid = array($exp[2]);
+    // Load the event dispatcher object through services for public files.
+    $dispatcher = \Drupal::service('event_dispatcher');
+    // Creating our FileDownloadTracker event class object.
+    $event = new FileDownloadTracker($fid);
+    // Dispatching the event through the ‘dispatch’  method,
+    // Passing event name and event object ‘$event’ as parameters.
+    $dispatcher->dispatch(FileDownloadTracker::SUBMIT, $event);
+}
+
+/*
+ * Implements hook_file_download().
+ */
+function file_download_tracker_file_download($uri) {
+  // $uri is of the form private://path/filename.ext
+  // Find which managed file this is.
+  $query = \Drupal::database()->query('SELECT
+  fid as fid
+  from file_managed fm
+  WHERE fm.uri = :uri', [':uri' => $uri]);
+  $result = $query->fetchAll();
+  $fid = array($result[0]->fid);
+  // Load the event dispatcher object through services for private files or core files.
+  $dispatcher = \Drupal::service('event_dispatcher');
+  // Creating our FileDownloadTracker event class object.
+  $event = new FileDownloadTracker($fid);
+  // Dispatching the event through the ‘dispatch’  method,
+  // Passing event name and event object ‘$event’ as parameters
+  $dispatcher->dispatch(FileDownloadTracker::SUBMIT, $event);
+}
+

@@ -1,0 +1,106 @@
+{#
+/**
+* @file
+* Theme override to display a region.
+*
+* Available variables:
+* - content: The content for this region, typically blocks.
+* - attributes: HTML attributes for the region div.
+* - region: The name of the region variable as defined in the theme's
+*   .info.yml file.
+*
+* @ingroup templates
+*
+* @see template_preprocess_region()
+*/
+#}
+{%
+set classes = [
+  'region',
+  'region-' ~ region|clean_class,
+]
+%}
+
+<div{{ attributes.addClass(classes) }}>
+
+
+  <header id="banner">
+    <div class="banner-logo">
+      <div class="container">
+        <div class="row">
+          {% if content %}
+            {{ content }}
+          {% endif %}
+
+          <button
+            type="button"
+            class="navbar-toggle searchbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#searchbar-collapse">
+
+            <i class="fa fa-search"></i><span class="sr-only">Toggle Search</span>
+          </button>
+
+          <div class="col-sm-6">
+            <div class="navbar-collapse collapse" id="searchbar-collapse">
+
+              <form
+                method="get"
+                class="searchbar-form form-inline ThunderstoneForm"
+                id="ThunderstoneSearchForm"
+                action="http://search3.nrel.gov/texis/search/">
+
+                <div class="form-group">
+                  <label for="search" class="sr-only">Search theSOURCE</label>
+
+                  <input TYPE="hidden" NAME="mode" value="">
+                  <input TYPE="hidden" NAME="opts" value="">
+                  <input TYPE="hidden" NAME="pr" value="metasource">
+                  <input TYPE="hidden" NAME="dropXSL" value="html">
+                  <input type="hidden" id="sq" name="sq" value="">
+                  <input TYPE="hidden" NAME="prox" value="page">
+                  <input TYPE="hidden" NAME="rorder" value="750">
+                  <input TYPE="hidden" NAME="rprox" value="1000">
+                  <input TYPE="hidden" NAME="rdfreq" value="0">
+                  <input TYPE="hidden" NAME="rwfreq" value="250">
+                  <input TYPE="hidden" NAME="rlead" value="1000">
+                  <input TYPE="hidden" NAME="rdepth" value="62">
+                  <input TYPE="hidden" NAME="sufs" value="1">
+                  <input TYPE="hidden" NAME="order" value="r">
+
+
+                  <input type="text"   id="query" name="query"
+                    maxlength="2047"
+                    placeholder="Search theSOURCE"
+                    class="form-control">
+
+                  <button type="submit" class="btn btn-default">Search</button>
+                </div>
+              </form>
+
+              <div class="hidden-sm hidden-md hidden-lg">
+                <form action="/phonebook/index.php" method="post" class="searchbar-form form-inline" >
+
+                  <div class="form-group">
+                    <label for="search" class="sr-only">Search Employee Directory</label>
+                    <input id="emp-search" type="text" placeholder="Search Employee Directory" name="zzsearch" class="form-control">
+      							<input name="attribute" type="hidden" value="name">
+      							<input name="criterion" type="hidden" value="contains">
+                    <button type="submit" class="btn btn-default">Search</button>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </header>
+  <!--startindex-->
+  <!-- == END GLOBAL BANNER == -->
+
+</div>

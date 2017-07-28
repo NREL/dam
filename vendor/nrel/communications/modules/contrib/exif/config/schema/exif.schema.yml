@@ -1,0 +1,77 @@
+exif.settings:
+  type: config_object
+  label: 'Exif settings'
+  mapping:
+    date_format_exif:
+      type: string
+      label : 'date format'
+    granularity:
+      type: integer
+      label: 'granularity'
+    mediatypes:
+      type: sequence
+      label: 'media entity types to check'
+      sequence:
+        type: string
+    nodetypes:
+      type: sequence
+      label: 'node entity types to check'
+      sequence:
+        type: string
+    update_metadata:
+      type: boolean
+      label: 'update metadata'
+    vocabulary:
+      type: string
+      label: 'vocabulary'
+    write_empty_values:
+      type: boolean
+      label: 'should write empty values'
+    extraction_solution:
+      type: string
+      label: 'extraction solution'
+    exiftool_location:
+      type: string
+      label: 'exiftool location'
+
+field.widget.settings.exif_readonly:
+  type: mapping
+  label: 'Exif Readonly field display format settings'
+  mapping:
+    exif_field_separator:
+      type: string
+      label: 'the separator to use to split values in the metadata'
+    exif_field:
+      type: string
+      label: 'the exif information to retrieve'
+    image_field:
+      type: string
+      label: 'image field to use to look for metadata'
+
+field.widget.settings.exif_hidden:
+  type: mapping
+  label: 'Exif Readonly field display format settings'
+  mapping:
+    exif_field_separator:
+      type: string
+      label: 'the separator to use to split values in the metadata'
+    exif_field:
+      type: string
+      label: 'the exif information to retrieve'
+    image_field:
+      type: string
+      label: 'image field to use to look for metadata'
+
+field.widget.settings.exif_html:
+  type: mapping
+  label: 'Exif Readonly field display format settings'
+  mapping:
+    exif_field_separator:
+      type: string
+      label: 'the separator to use to split values in the metadata'
+    exif_field:
+      type: string
+      label: 'the exif information to retrieve'
+    image_field:
+      type: string
+      label: 'image field to use to look for metadata'

@@ -1,0 +1,7 @@
+slick_video:
+  type: slick_extended
+  label: 'Slick video base display format settings'
+
+field.formatter.settings.slick_video:
+  type: slick_video
+  label: 'Slick video display format settings'

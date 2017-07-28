@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * Implements hook_requirements().
+ */
+function imagick_requirements($phase) {
+  $requirements = array();
+
+  // Set a status message when the extension is not available
+  if (!_imagick_is_available()) {
+    $requirements['not_installed'] = array(
+      'title' => 'ImageMagick PHP extension',
+      'value' => t('Not installed'),
+      'severity' => REQUIREMENT_ERROR,
+      'description' => t('The Imagick image toolkit requires that the Imagick extension for PHP is installed and configured properly. For more information see <a href=":url">PHP\'s ImageMagick documentation</a>.', [':url' => 'http://php.net/manual/book.imagick.php']),
+    );
+  }
+
+  return $requirements;
+}
+
+/**
+ * Helper function to check if ImageMagick PHP extension is available.
+ */
+function _imagick_is_available() {
+  return extension_loaded('imagick');
+}

@@ -1,0 +1,73 @@
+[
+    {
+        "name": "nrel/communications",
+        "version": "1.0.12",
+        "version_normalized": "1.0.12.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/NREL/communications.git",
+            "reference": "cdd18922c6006c55e1e58c5dc3a786506026366b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/NREL/communications/zipball/cdd18922c6006c55e1e58c5dc3a786506026366b",
+            "reference": "cdd18922c6006c55e1e58c5dc3a786506026366b",
+            "shasum": ""
+        },
+        "require-dev": {
+            "behat/behat": "^3.0",
+            "behat/mink": "~1.7",
+            "behat/mink-goutte-driver": "~1.2",
+            "composer/composer": "^1.4",
+            "drupal-composer/drupal-scaffold": "^2.0.0",
+            "drupal/coder": "^2.0",
+            "drupal/console": "^1.0",
+            "drupal/devel": "^1.0",
+            "drupal/drupal-extension": "^3.2",
+            "drush/drush": "^8.0",
+            "jakoch/phantomjs-installer": "1.9.8",
+            "jcalderonzumba/gastonjs": "~1.0.2",
+            "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
+            "mikey179/vfsstream": "~1.2",
+            "phing/phing": "^2.14",
+            "phpunit/phpunit": "~4.8",
+            "se/selenium-server-standalone": "^2.53",
+            "squizlabs/php_codesniffer": "2.*",
+            "symfony/css-selector": "~2.8"
+        },
+        "time": "2017-07-21T15:41:49+00:00",
+        "type": "drupal-profile",
+        "extra": {
+            "packagist.drupal-composer.org": {
+                "discover-make-files": false
+            },
+            "installer-paths": {
+                "docroot/core": [
+                    "type:drupal-core"
+                ],
+                "modules/contrib/{$name}": [
+                    "type:drupal-module"
+                ]
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Damon Haley (dhaley)",
+                "email": "damon.haley@nrel.gov",
+                "role": "Maintainer"
+            },
+            {
+                "name": "Shaun Laws (slaws)",
+                "email": "shaun.laws@nrel.gov",
+                "role": "Co-maintainer"
+            }
+        ],
+        "description": "Communications profile is the de-facto Drupal swiss army knife for NREL sites.",
+        "homepage": "https://github.com/NREL/communications"
+    }
+]

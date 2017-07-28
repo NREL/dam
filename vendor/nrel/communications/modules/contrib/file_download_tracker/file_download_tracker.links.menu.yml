@@ -1,0 +1,20 @@
+file_download_tracker.reports:
+  title: 'File Download Tracker'
+  description: 'File Download Tracker'
+  parent: system.admin
+  route_name: file_download_tracker.file_report
+  weight: 100
+
+file_download_tracker.file_report:
+  title: 'File Download Reports'
+  description: 'File Download Reports'
+  parent: file_download_tracker.reports
+  route_name: file_download_tracker.file_report
+  weight: 100
+
+file_download_tracker.page_report:
+  title: 'Page Download Reports'
+  description: 'Page Download Reports'
+  parent: file_download_tracker.reports
+  route_name: file_download_tracker.page_report
+  weight: 100

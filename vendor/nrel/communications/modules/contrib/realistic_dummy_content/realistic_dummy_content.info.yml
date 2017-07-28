@@ -1,0 +1,18 @@
+type: module
+name: Realistic Dummy Content
+description: Uses the Realistic Dummy Content API, and custom demo images in a specific directory structure, to make customized generated content. Do not enable on production sites.
+package: Development
+# core: 8.x
+tags:
+  - developer
+
+# note that we are using realistic_dummy_content_api as a dependency here purely
+# as a convenience. For you own modules, this is not required.
+dependencies:
+  - realistic_dummy_content_api
+
+# Information added by Drupal.org packaging script on 2017-02-27
+version: '8.x-2.0-beta1'
+core: '8.x'
+project: 'realistic_dummy_content'
+datestamp: 1488221595

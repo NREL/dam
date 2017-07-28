@@ -1,0 +1,9 @@
+/*
+ * THIS PLUGIN IS NOT MAINTAINED. CONSIDER USING THE NREL NEWSY PLUGIN ON GITHUB.NREL.GOV
+ *
+ *  Project: theSOURCE JSON Feed parser
+ *  Description: AJAX plugin to parse JSON(P) feed and display it in html
+ *  Author: Michael Oakley
+ *  License: None
+ */
+!function(a,b,c,d){"use strict";function g(b,c){this.element=b,this.options=a.extend({},f,c),this._defaults=f,this._name=e,this.init()}var e="feedeater",f={type:"GET",dataType:"jsonp",url:"",ajaxcallback:"",tmplRegex:"{{((.)?.*?)}}",templateWrapper:"",template:'<p><a href="{{Link}}">{{Headline}}</a><br>{{Date}}</p>',successCallback:function(){}};g.prototype={init:function(){this.doAjax()},doAjax:function(){var b=this,c=a(this.element),d=a.ajax({type:this.options.type,dataType:this.options.dataType,url:this.options.url,jsonpCallback:this.options.ajaxcallback});d.done(function(d){var e="",f=/(<)([a-z]*)(.*?)(>)/,g="",h="";return c.empty(),a(d.nodes).each(function(a,c){e+=b.buildhtml(c)}),b.options.templateWrapper.length?(g=b.options.templateWrapper.match(f),h=g[1]+"/"+g[2]+g[4],c.append(b.options.templateWrapper+e+h)):c.append(e),b.options.successCallback()}),d.fail(function(){c.empty(),c.append("<h3>Sorry. I couldn't load the feed.</h3>")})},buildhtml:function(a){return this.tmpl(this.options.template,this.options,a.node)},tmpl:function(b,c){var e=new RegExp(c.tmplRegex||a.fn.feedeater.defaults.tmplRegex,"g"),f=a.makeArray(arguments);return f.shift(),b.replace(e,function(b,c){var e,g,h,i,j=c.split(".");for(e=0;e<f.length;e++)if(h=f[e]){if(j.length>1)for(i=h,g=0;g<j.length;g++)h=i,i=i[j[g]]||c;else i=h[c];if(a.isFunction(i))return i.apply(h,f);if(i!==d&&null!==i&&i!=c)return i}return c})}},a.fn[e]=function(b){return this.each(function(){a.data(this,"plugin_"+e)||a.data(this,"plugin_"+e,new g(this,b))})}}(jQuery,window,document);

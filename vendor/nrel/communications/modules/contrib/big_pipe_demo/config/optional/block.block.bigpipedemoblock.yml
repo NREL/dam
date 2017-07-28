@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - big_pipe_demo
+  theme:
+    - bartik
+id: bigpipedemoblock
+theme: bartik
+region: sidebar_first
+weight: 100
+provider: null
+plugin: big_pipe_demo_block
+settings:
+  id: '1'
+  label: 'BigPipe Demo block #1'
+  provider: big_pipe_demo
+  label_display: visible
+  default_duration: '100'
+  html: '<p>Hello world!</p>'
+visibility: {  }

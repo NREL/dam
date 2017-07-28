@@ -1,0 +1,13 @@
+name: 'Permissions by Term'
+description: 'Limits the selection of specific taxonomy terms by users or roles. Prevents users to display nodes and nodes on views pages, for which which they do not have access by taxonomy term restriction.'
+dependencies:
+  - taxonomy
+type: module
+# core: '8.x'
+# version: '8.x-1.0'
+
+# Information added by Drupal.org packaging script on 2017-03-09
+version: '8.x-1.17'
+core: '8.x'
+project: 'permissions_by_term'
+datestamp: 1489099390

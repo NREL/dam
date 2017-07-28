@@ -1,0 +1,82 @@
+{%  if message|trim %}
+  <div class="region region-highlighted">
+    <div class="messages messages--status" aria-label="Status message" role="contentinfo">
+      <h3 class="visually-hidden">Status message</h3>
+      {{ message }}
+    </div>
+  </div>
+{% endif %}
+<h3>{% trans %}About{% endtrans %}</h3>
+<p>{% trans %}The Exif module allows you :{% endtrans %}
+<ul>
+  <li>{% trans %}extract metadata from an image{% endtrans %}</li>
+  <li>{% trans %}to classify your images by settings terms in taxonomy vocabulary{% endtrans %}</li>
+</ul>
+{% trans %}To classify images, you define <em>vocabularies</em> that contain related <em>terms</em>, and then assign the vocabularies to content types. For more information, see the online handbook entry for the <a href="{{ taxonomy }}">Taxonomy module</a>.{% endtrans %}
+</p>
+<h3>{% trans %}Uses{% endtrans %}</h3>
+<dl>
+  <dt>{% trans %}Creating vocabularies{% endtrans %}</dt>
+  <dd>{% trans %}This is optional{% endtrans %}
+      {% trans %}Users with sufficient <a href="@perm">permissions</a> can create <em>vocabularies</em> through the <a href="@taxo">Taxonomy page</a>. The page listing the terms provides a drag-and-drop interface for controlling the order of the terms and sub-terms within a vocabulary, in a hierarchical fashion.{% endtrans %}
+    {% trans %}If you want, the exif module can create in the chosen vocabulary (by default "Photographies\' metadata"), the following structure:{% endtrans %}
+    <ul class="vocabulary-structure">
+      <li>{% trans %}<em>vocabulary</em>: Photographies' metadata{% endtrans %}</li>
+      <ul>
+        <li>{% trans %}<em>term</em>: iptc{% endtrans %}</li>
+        <ul>
+          <li>{% trans %}<em>sub-term</em>: keywords{% endtrans %}</li>
+          <ul>
+            <li>{% trans %}<em>sub-term</em>: Paris{% endtrans %}</li>
+            <li>{% trans %}<em>sub-term</em>: Friends{% endtrans %}</li>
+          </ul>
+        </ul>
+        <ul>
+          <li>{% trans %}<em>sub-term</em>: caption{% endtrans %}</li>
+          <ul>
+            <li>{% trans %}<em>sub-term</em>: Le louvre{% endtrans %}</li>
+          </ul>
+        </ul>
+      </ul>
+      <ul>
+        <li>{% trans %}<em>term</em>: exif{% endtrans %}</li>
+        <ul>
+          <li>{% trans %}<em>sub-term</em>: model{% endtrans %}</li>
+          <ul>
+            <li>{% trans %}<em>sub-term</em>: KINON DE800{% endtrans %}</li>
+          </ul>
+        </ul>
+        <ul>
+          <li>{% trans %}<em>sub-term</em>: isospeedratings{% endtrans %}</li>
+          <ul>
+            <li>{% trans %}<em>sub-term</em>: 200{% endtrans %}</li>
+          </ul>
+        </ul>
+      </ul>
+    </ul>
+    <a class="button button-small form-submit" href="helper/vocabulary">{% trans %}create a vocabulary for my
+      photos.{% endtrans %}</a>
+  </dd>
+  <dt>{% trans %}Creating type for Photos{% endtrans %}</dt>
+  <dd>{% trans %}To get metadata information of an image, you have to choose on which node type the extraction should be made.{% endtrans %}
+    {% trans %}You also have to create fields with specific names using the new Field UI.{% endtrans %}
+    {% trans %}The type of the field can be :{% endtrans %}
+    <ul>
+      <li>{% trans %}<em>text field</em>: extract information and put it in the text field.{% endtrans %}. </li>
+      <li>{% trans %}<em>term reference field</em>: extract information, create terms and sub-terms if needed and put it in the field.{% endtrans %}.</li>
+    </ul>
+    {% trans %}Please, if you want to use term reference field, ensure :{% endtrans %}
+    <ul>
+      <li>{% trans %}you choose the autocompletion widget and{% endtrans %}</li>
+      <li>{% trans %}the "Images" Vocabulary exist.{% endtrans %}</li>
+    </ul>
+    {% trans %}TIPS : Note for iptc and exif fields that have several values (like field iptc "keywords" as an example), {% endtrans %}
+    {% trans %}if you want to get all the values, do not forget to configure the field to use unlimited number of values (by default, set to 1).{% endtrans %}
+    {% trans %}if you want, the exif module can create a node type 'Photography' with a image field and some basic
+    metadata fields (keywords, model and title).{% endtrans %}<br>
+    <a class="button button-small form-submit" href="helper/nodetype">{% trans %}create a <b>node</b> content type for my
+      photos.{% endtrans %}</a> <b>OR</b>
+    <a class="button button-small form-submit" href="helper/nodetype">{% trans %}create a <b>media</b> content type for my
+      photos.{% endtrans %}</a>
+  </dd>
+</dl>

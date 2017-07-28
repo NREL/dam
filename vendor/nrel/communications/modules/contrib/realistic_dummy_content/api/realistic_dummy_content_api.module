@@ -1,0 +1,408 @@
+<?php
+
+/**
+ * @file
+ * API code allowing other modules to generate realistic dummy content.
+ *
+ * See the Realistic Dummy Content module for an example of how to use.
+ */
+
+use Drupal\realistic_dummy_content_api\Framework\Framework;
+use Drupal\realistic_dummy_content_api\includes\Math;
+use Drupal\realistic_dummy_content_api\includes\RealisticDummyContentRecipe;
+
+/**
+ * Check arguments' types.
+ *
+ * Meant to be called by functions which receive parameters. This
+ * function can be called to make sure each parameter is of the correct
+ * type using a callback.
+ *
+ * @param array $callbacks
+ *   Array of callbacks for each parameter of the calling function.
+ *
+ * @throws \Exception
+ */
+function realistic_dummy_content_api_argcheck($callbacks) {
+  $trace = debug_backtrace();
+  $checks = array();
+  $errors = FALSE;
+  foreach ($callbacks as $index => $callback) {
+    $argument = $trace[1]['args'][$index];
+    if (!$callback($argument)) {
+      $checks[] = t('Argument @index is a @realtype, so @callback returned FALSE.', array(
+        '@index' => $index,
+        '@realtype' => gettype($argument),
+        '@callback' => $callback,
+      ));
+      $errors = TRUE;
+    }
+    $checks[] = t('Argument @index is OK: it is a @realtype, so @callback returned TRUE.', array(
+      '@index' => $index,
+      '@realtype' => gettype($argument),
+      '@callback' => $callback,
+    ));
+  }
+  if ($errors) {
+    $calling_function = realistic_dummy_content_api_calling_function(3);
+    $called_function = realistic_dummy_content_api_calling_function(2);
+    throw new \Exception(t('@calling called @called with bad argument types:', array(
+      '@calling' => $calling_function,
+      '@called' => $called_function,
+    )) . ' ' . implode('; ', $checks));
+  }
+}
+
+/**
+ * Callback to make sure data is a content type, not a bundle.
+ *
+ * @param mixed $data
+ *   Some data to check.
+ *
+ * @return bool
+ *   Whether or not the data is ok.
+ */
+function realistic_dummy_content_api_argcheck_entitytype($data) {
+  return is_string($data) && $data != 'article';
+}
+
+/**
+ * Returns the current framework.
+ *
+ * @return string
+ *   Backdrop, Drupal7, Drupal8 (Backdrop, Drupal 7, Drupal 8).
+ */
+function realistic_dummy_content_api_version() {
+  if (defined('BACKDROP_BOOTSTRAP_SESSION')) {
+    return 'Backdrop';
+  }
+  if (defined('VERSION')) {
+    return 'Drupal7';
+  }
+  return 'Drupal8';
+}
+
+/**
+ * Returns the calling function through a backtrace.
+ */
+function realistic_dummy_content_api_calling_function($level = 2) {
+  // A funciton x has called a function y which called this.
+  // See stackoverflow.com/questions/190421.
+  $caller = debug_backtrace();
+  $caller = $caller[$level];
+  $r = $caller['function'] . '()';
+  if (isset($caller['class'])) {
+    $r .= ' in ' . $caller['class'];
+  }
+  if (isset($caller['object'])) {
+    $r .= ' (' . get_class($caller['object']) . ')';
+  }
+  return $r . ' in ' . $caller['file'] . ' (line ' . $caller['line'] . ')';
+}
+
+spl_autoload_register(function ($class_name) {
+  if (realistic_dummy_content_api_version() == 'Drupal8') {
+    return;
+  }
+  if (strpos($class_name, 'realistic_dummy_content') === FALSE) {
+    return;
+  }
+  try {
+    $parts = explode('\\', $class_name);
+    // Remove "Drupal" from the beginning of the class name.
+    array_shift($parts);
+    $module = array_shift($parts);
+    $path = 'src/' . implode('/', $parts);
+    if (!module_load_include('php', $module, $path)) {
+      throw new \Exception('Expected to find ' . $class_name . ' at ' . $module . '/' . $path . '.php, but that file does not exist.');
+    }
+  }
+  catch (Exception $e) {
+    throw new \Exception('Autoloader at ' . __FILE__ . ' was asked by ' . realistic_dummy_content_api_calling_function(4) . ' to autoload the class ' . $class_name . ' but found the following error: ' . $e->getMessage());
+  }
+});
+
+/**
+ * Type of number generation.
+ */
+// We changed in the constant name in x.x-2.x, however the example
+// recipe with the old constant name is possibly still in use, so we are
+// keeping the old constant here to avoid breaking anything.
+// @codingStandardsIgnoreStart
+define('REALISTIC_DUMMY_CONTENT_SEQUENTIAL', FALSE);
+// @codingStandardsIgnoreStart
+define('REALISTIC_DUMMY_CONTENT_API_SEQUENTIAL', FALSE);
+define('REALISTIC_DUMMY_CONTENT_API_RANDOM', TRUE);
+
+/**
+ * Implements hook_entity_presave().
+ */
+function realistic_dummy_content_api_entity_presave($entity, $type = NULL) {
+  try {
+    // In Drupal 7, $entity and $type will be populated. In Drupal 8, only
+    // $entity will be populated.
+    Framework::instance()->hookEntityPresave($entity, $type);
+  }
+  // Hook implementations should never throw exceptions, so we'll catch them
+  // all here.
+  catch (Exception $e) {
+    drupal_set_message($e->getMessage());
+  }
+}
+
+/**
+ * Implements hook_realistic_dummy_content_attribute_manipulator_alter().
+ */
+function realistic_dummy_content_api_realistic_dummy_content_attribute_manipulator_alter(&$class, &$info) {
+  $type = isset($info['type']) ? $info['type'] : NULL;
+  $machine_name = isset($info['machine_name']) ? $info['machine_name'] : NULL;
+  $entity = isset($info['entity']) ? $info['entity'] : NULL;
+  $field_name = isset($info['field_name']) ? $info['field_name'] : NULL;
+  // If you want to implement a particular manipulator class for a field or
+  // property you can do so by implementing this hook and reproducing what's
+  // below for your own field or property type.
+  switch (Framework::instance()->fieldTypeMachineName($info)) {
+    case 'picture':
+      // The user picture.
+      $class = '\Drupal\realistic_dummy_content_api\includes\RealisticDummyContentUserPicture';
+      break;
+
+    case 'text_with_summary':
+      // For example the body.
+      $class = '\Drupal\realistic_dummy_content_api\includes\RealisticDummyContentTextWithSummaryField';
+      break;
+
+    case 'taxonomy_term_reference':
+      // For example, tags on articles.
+      $class = '\Drupal\realistic_dummy_content_api\includes\RealisticDummyContentTermReferenceField';
+      break;
+
+    case 'image':
+      // For example, images on articles.
+      $class = '\Drupal\realistic_dummy_content_api\includes\RealisticDummyContentImageField';
+      break;
+
+    default:
+      break;
+  }
+}
+
+/**
+ * hook_user_insert and hook_user_presave should not be called in Drupal 8.
+ *
+ * In Drupal 8 this work is done in hook_entity_presave().
+ */
+if (realistic_dummy_content_api_version() != 'Drupal8') {
+  /**
+   * Implements hook_user_insert().
+   */
+  function realistic_dummy_content_api_user_insert(&$edit, $account, $category) {
+    Framework::instance()->hookUserInsert($edit, $account, $category);
+  }
+
+  /**
+   * Implements hook_user_presave().
+   */
+  function realistic_dummy_content_api_user_presave(&$edit, $account, $category) {
+    Framework::instance()->hookUserPresave($edit, $account, $category);
+  }
+}
+
+/**
+ * Checks if a given entity is dummy content.
+ *
+ * @param object $entity
+ *   The object for a given entity type, for example this can be a user object
+ *   or a node object.
+ * @param string $type
+ *   The type of the information to change, for example 'user' or 'node'.
+ *
+ * @return bool
+ *   TRUE if at least one module implemented
+ *   hook_realistic_dummy_content_api_dummy and thinks the entity is a dummy
+ *   objects; FALSE otherwise.
+ */
+function realistic_dummy_content_api_is_dummy($entity, $type) {
+  foreach (Framework::instance()->moduleInvokeAll('realistic_dummy_content_api_dummy', $entity, $type) as $dummy) {
+    if ($dummy) {
+      return TRUE;
+    }
+  }
+  return FALSE;
+}
+
+/**
+ * Insert or improve dummy data in an entity of a given type.
+ *
+ * @param object $entity
+ *   The object for a given type, for example this can be a user object
+ *   or a node object.
+ * @param string $type
+ *   The type of the information to change, for example 'user' or 'node'.
+ * @param array $filter
+ *   (Default is array()).
+ *   If set, only certain fields will be considered when manipulating
+ *   the object. This can be useful, for example for users, because
+ *   two separate manipulations need to be performed, depending on whether
+ *   hook_user_insert() or hook_user_presave(). Both hooks need to modify
+ *   only certain properties and fields, but taken together the entire
+ *   object can be manipulated.
+ *   The filter is an associative array which can contain no key (all
+ *   fields and properties should be manipulated), the include key (fields
+ *   included are the only ones to be manipulated, or the exclude key (all
+ *   fields except those included are the ones to be manipulated).
+ *
+ *   realistic_dummy_content_api_user_insert() defines the array
+ *   ('exclude' => array(picture)) whereas
+ *   realistic_dummy_content_api_user_presave() defines the array
+ *   ('include' => array(picture)). Therefore taken together these two
+ *   hooks manipulate the entire user object, but in two phases.
+ *
+ *   This allows hook implementations to return a different class based on
+ *   the type of filter.
+ *
+ * @throws \Exception
+ */
+function realistic_dummy_content_api_improve_dummy_content(&$entity, $type, $filter = array()) {
+  realistic_dummy_content_api_argcheck(array('is_object', 'realistic_dummy_content_api_argcheck_entitytype'));
+  $modifiers = Framework::instance()->moduleInvokeAll('realistic_dummy_content_api_class', $entity, $type, $filter);
+
+  $candidate = $entity;
+
+  foreach ($modifiers as $modifier_class) {
+    realistic_dummy_content_api_validate_class($modifier_class);
+    $modifier = new $modifier_class($candidate, $type, $filter);
+    $modifier->modify();
+    $candidate = $modifier->getEntity();
+  }
+
+  $entity = $candidate;
+}
+
+/**
+ * Throw an exception if an entity is not valid.
+ */
+function realistic_dummy_content_api_validate($entity, $type) {
+  // Throw an exception here if an entity is not valid, for example if two users
+  // have the same email address or name, or anything else.
+  // @TODO provide a hook for third-party modules to manage this.
+}
+
+/**
+ * Validate that a class is a valid subclasss of RealisticDummyContentBase.
+ *
+ * @param string $class
+ *   A class name.
+ *
+ * @throws \Exception
+ */
+function realistic_dummy_content_api_validate_class($class) {
+  if (!class_exists($class)) {
+    throw new \Exception(t("@class is not a valid class; make sure you include its file or use Drupal's autoload mechanism: name your include file with the same name as the class, and add it to the .info file, then clear your cache.", array('@class' => $class)));
+  }
+  if (!is_subclass_of($class, '\Drupal\realistic_dummy_content_api\includes\RealisticDummyContentBase')) {
+    throw new \Exception(t('@class is a valid class but it is not a subclass of \Drupal\realistic_dummy_content_api\includes\RealisticDummyContentBase.', array('@class' => $class)));
+  }
+}
+
+/**
+ * Implements hook_realistic_dummy_content_api_class().
+ */
+function realistic_dummy_content_api_realistic_dummy_content_api_class($entity, $type, $filter = array()) {
+  return array(
+    // Insert class names for all classes which can modify entities for the
+    // given type. These classes must exist, either through Drupal's
+    // autoload system or be included explictely, and they must be
+    // subclasses of RealisticDummyContentBase.
+    '\Drupal\realistic_dummy_content_api\includes\RealisticDummyContentFieldModifier',
+  );
+}
+
+/**
+ * Implements hook_realistic_dummy_content_api_dummy().
+ */
+function realistic_dummy_content_api_realistic_dummy_content_api_dummy($entity, $type) {
+  $return = Framework::instance()->entityIsDummy($entity, $type);
+  return $return;
+}
+
+/**
+ * Generate a random, or sequential, number.
+ *
+ * By default, this function will return a random number between $start and $end
+ * inclusively. If you set the realistic_dummy_content_api_rand variable to
+ * REALISTIC_DUMMY_CONTENT_API_SEQUENTIAL, for example for automated tested
+ * or in a recipe (an example can be found at
+ * realistic_dummy_content/recipe/realistic_dummy_content.recipe.inc),
+ * then this will call Framework::instance()->sequential().
+ *
+ * See the documentation for Math::sequential() for
+ * details.
+ *
+ * @param int $start
+ *   The first possible number in the range.
+ * @param int $end
+ *   The last possible number in the range.
+ * @param string $hash
+ *   (Default is NULL).
+ *   Ignored for random numbers; for sequential numbers, please see the
+ *   documentation for Math::sequential() for details.
+ *
+ * @return int
+ *   A random number by default, or a sequential number if you set the
+ *   realistic_dummy_content_api_rand variable to
+ *   REALISTIC_DUMMY_CONTENT_API_SEQUENTIAL.
+ *   Please see the description of Math::sequential() for
+ *   details.
+ */
+function realistic_dummy_content_api_rand($start, $end, $hash = NULL) {
+  if (Framework::instance()->configGet('realistic_dummy_content_api_rand', REALISTIC_DUMMY_CONTENT_API_RANDOM)) {
+    return rand($start, $end);
+  }
+  else {
+    $math = new Math();
+    return $math->sequential($start, $end, $hash);
+  }
+}
+
+/**
+ * Attempts to generate all realistic content for the current site.
+ *
+ * @param object $log
+ *   An object of a class which implements the interface
+ *   RealisticDummyContentLogInterface. Logging will be different if you are
+ *   using drush or in the context of an automated test, for example.
+ */
+function realistic_dummy_content_api_apply_recipe($log) {
+  try {
+    if (!class_exists('\Drupal\realistic_dummy_content_api\includes\RealisticDummyContentRecipe')) {
+      throw new \Exception('Cannot find the class \Drupal\realistic_dummy_content_api\includes\RealisticDummyContentRecipe, this might be solved by uninstalling and reinstalling realistic_dummy_content or rebuilding the registry (Drupal 7), and has been known to happen when upgrading from beta3.');
+    }
+    RealisticDummyContentRecipe::run($log);
+  }
+  catch (Exception $e) {
+    $log->log('An exception occurred while trying to apply a recipe');
+    $log->error($e->getMessage());
+  }
+}
+
+/**
+ * Runs self-tests.
+ *
+ * Meant to be run from the CI scripts on a throwaway environment.
+ *
+ * Will exit the php script with 1 in case of a failure.
+ *
+ * @param bool $die
+ *   Whether or not to kill the script. We want to kill the script if this
+ *   is called via drush, so we'll get the correct exit code. During
+ *   development we can set this to FALSE.
+ *
+ */
+function realistic_dummy_content_api_selftest($die = TRUE) {
+  if (Framework::instance()->selfTest()) {
+    if ($die) {
+      die('Self test returned errors.');
+    }
+  }
+}

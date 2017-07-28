@@ -1,0 +1,5 @@
+textimage.settings:
+  title: 'Textimage'
+  description: 'Configure Textimage settings.'
+  parent: system.admin_config_media
+  route_name: textimage.settings

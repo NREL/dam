@@ -1,0 +1,7 @@
+name: communications_sso
+type: module
+description: Enable NREL SSO.
+core: 8.x
+package: Communications
+dependencies:
+  - simplesamlphp_auth

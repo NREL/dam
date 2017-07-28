@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a Textimage formatter theme.
+ *
+ * Available variables:
+ * - image: A collection of image data.
+ * - anchor_url: (Optional) if specified, the entire output will be wrapped
+ *   in a <a> anchor.
+ * - anchor_attributes: (Optional) the 'href' attributes of the anchor.
+ * - image_container_attributes : (Optional) if specified, the <img> tag will
+ *   be wrapped in a <div> container, whose attributes will be set to the
+ *   array passed here.
+ *
+ * @see template_preprocess_textimage_formatter()
+ *
+ * @ingroup themeable
+ */
+#}
+{% spaceless %}
+{% if image %}
+  {% if anchor_url %}
+    <a {{ anchor_attributes }}>
+  {% endif %}
+    {% if image_container_attributes %}
+      <div {{ image_container_attributes }}>
+    {% endif %}
+    {{ image }}
+    {% if image_container_attributes %}
+      </div>
+    {% endif %}
+  {% if anchor_url %}
+    </a>
+  {% endif %}
+{% else %}
+  {{ 'Image not available.'|t }}
+{% endif %}
+{% endspaceless %}

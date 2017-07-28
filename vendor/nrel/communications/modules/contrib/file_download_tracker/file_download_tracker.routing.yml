@@ -1,0 +1,13 @@
+file_download_tracker.file_report:
+  path: '/file-download-tracker-file-report'
+  defaults:
+    _title: 'File Download Reports'
+  requirements:
+    _permission: 'access all reports'
+
+file_download_tracker.page_report:
+  path: '/file-download-tracker-page-report'
+  defaults:
+    _title: 'Page Download Reports'
+  requirements:
+    _permission: 'access all reports'

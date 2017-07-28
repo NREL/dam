@@ -1,0 +1,18 @@
+services:
+    permissions_by_term.kernel_event_listener:
+        class: Drupal\permissions_by_term\KernelEventListener
+        arguments: []
+        tags:
+            - { name: event_subscriber }
+    permissions_by_term.access_check:
+        class: Drupal\permissions_by_term\AccessCheck
+        arguments: ['@entity.manager']
+    permissions_by_term.access_storage:
+        class: Drupal\permissions_by_term\AccessStorage
+        arguments: ['@database']
+    permissions_by_term.node_access_record_factory:
+        class: \Drupal\permissions_by_term\Factory\NodeAccessRecordFactory
+    permissions_by_term.node_access:
+        class: \Drupal\permissions_by_term\NodeAccess
+        arguments: ['@permissions_by_term.access_storage', '@permissions_by_term.node_access_record_factory', '@entity.manager', '@permissions_by_term.access_check', '@database']
+

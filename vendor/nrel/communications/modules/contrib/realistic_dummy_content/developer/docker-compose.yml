@@ -1,0 +1,45 @@
+# This is where we define how to set up a complete environment with
+# several linked containers to serve the new and old sites with webservers
+# and database servers. Used during the migration process.
+version: '2'
+
+services:
+  drupal8:
+    build:
+      context: .
+      dockerfile: frameworks/drupal8/Dockerfile
+    ports:
+      - "80"
+    volumes:
+      - ../:/var/www/html/modules/realistic_dummy_content
+      - ./tmp/drupal8:/var/www/html/sites/default
+    links:
+      - database:database
+    working_dir: /var/www/html
+    restart: always
+
+  drupal7:
+    build:
+      context: .
+      dockerfile: frameworks/drupal7/Dockerfile
+    ports:
+      - "80"
+    volumes:
+      - ../:/var/www/html/sites/all/modules/realistic_dummy_content
+      - ./tmp/drupal7:/var/www/html/sites/default
+    links:
+      - database:database
+    working_dir: /var/www/html
+    restart: always
+
+  database:
+    image: mysql
+    environment:
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+      MYSQL_DATABASE: drupal
+      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    ports:
+      - "3306"
+    restart: always

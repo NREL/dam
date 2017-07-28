@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains communications_test.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function communications_test_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the communications_test module.
+    case 'help.page.communications_test':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Install communications test data;') . '</p>';
+      return $output;
+
+    default:
+  }
+}

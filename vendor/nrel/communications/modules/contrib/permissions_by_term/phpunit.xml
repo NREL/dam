@@ -1,0 +1,16 @@
+<phpunit bootstrap="./../../core/tests/bootstrap.php" colors="true"
+         beStrictAboutTestsThatDoNotTestAnything="true"
+         beStrictAboutOutputDuringTests="true"
+         beStrictAboutChangesToGlobalState="true"
+         printerClass="\Drupal\Tests\Listeners\HtmlOutputPrinter">
+
+  <env name="PHP_IDE_CONFIG" value="PHPSTORM"/>
+
+  <testsuites>
+    <testsuite name="Unit Test Suite">
+      <directory>./tests/src/Unit</directory>
+    </testsuite>
+  </testsuites>
+
+
+</phpunit>

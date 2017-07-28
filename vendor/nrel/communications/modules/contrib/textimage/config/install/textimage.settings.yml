@@ -1,0 +1,8 @@
+debug: FALSE
+default_extension: 'png'
+url_generation:
+  enabled: FALSE
+  text_separator: '---'
+default_font:
+  name:
+  uri:

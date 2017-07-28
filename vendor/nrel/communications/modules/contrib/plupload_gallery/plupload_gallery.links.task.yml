@@ -1,0 +1,14 @@
+entity.node.plupload_gallery_uploads:
+  route_name: entity.node.plupload_gallery_uploads
+  base_route: entity.node.canonical
+  title: Upload Images
+
+entity.node.plupload_gallery_manage:
+  route_name: entity.node.plupload_gallery_manage
+  base_route: entity.node.canonical
+  title: Manage Images
+
+entity.node.plupload_gallery_gallery:
+  route_name: entity.node.plupload_gallery_gallery
+  base_route: entity.node.canonical
+  title: Gallery

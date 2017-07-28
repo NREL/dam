@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Install and uninstall functions for the communications_person module.
+ */
+
+
+use Drupal\node\Entity\Node;
+use Drupal\file\Entity\File;
+use Drupal\media_entity\Entity\Media;
+
+use Drupal\editor\Entity\Editor;
+use Drupal\embed\Entity\EmbedButton;
+use Drupal\entity_browser\Entity\EntityBrowser;
+use Drupal\lightning_core\ConfigHelper as Config;
+use Drupal\views\Entity\View;
+
+
+/**
+ * Implements hook_install().
+ */
+function communications_person_install() {
+  $default_user_picture = \Drupal::moduleHandler()->getModule('communications_person')->getPath() . '/images/batman.jpg';
+  $fs = \Drupal::service('file_system');
+  $destination = file_unmanaged_copy($default_user_picture, 'public://' . $fs->basename($default_user_picture));
+
+  if ($destination) {
+    $file = File::create(['uri' => $destination]);
+    $file->save();
+  }
+}

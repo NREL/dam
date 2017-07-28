@@ -1,0 +1,17 @@
+date_format_exif: null
+granularity: 0
+update_metadata: false
+write_empty_values: false
+extraction_solution: simple_exiftool
+exiftool_location: /usr/bin/exiftool
+vocabulary: exif
+mediatypes:
+  image: image
+  document: '0'
+  instagram: '0'
+  tweet: '0'
+  video: '0'
+nodetypes:
+  article: '0'
+  landing_page: '0'
+  page: '0'

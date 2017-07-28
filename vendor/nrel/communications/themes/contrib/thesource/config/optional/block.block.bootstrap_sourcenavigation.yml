@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:b6269bf7-e6fa-4846-9a27-7277f75933ca'
+  module:
+    - block_content
+  theme:
+    - bootstrap
+id: sourcenavigation
+theme: thesource
+region: navigation_collapsible
+weight: -5
+provider: null
+plugin: 'block_content:b6269bf7-e6fa-4846-9a27-7277f75933ca'
+settings:
+  id: 'block_content:b6269bf7-e6fa-4846-9a27-7277f75933ca'
+  label: 'Source Navigation'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

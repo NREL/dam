@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * Implements hook_form_FORM_ID_alter() for the big_pipe_demo_block form.
+ *
+ * Since the exposed form is a GET form, we don't want it to send the form
+ * tokens. However, you cannot make this happen in the form builder function
+ * itself, because the tokens are added to the form after the builder function
+ * is called. So, we have to do it in a form_alter.
+ *
+ * @see search_form_search_block_form_alter()
+ * @see \Drupal\big_pipe_demo\Plugin\Block\DemoBlock::buildForm()
+ */
+function big_pipe_demo_form_big_pipe_demo_block_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $form['form_build_id']['#access'] = FALSE;
+  $form['form_token']['#access'] = FALSE;
+  $form['form_id']['#access'] = FALSE;
+}

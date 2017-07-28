@@ -1,0 +1,25 @@
+langcode: en
+default_langcode: en
+activate: true
+mail_attr: mail
+unique_id: uid
+user_name: uid
+auth_source: dev
+login_link_display_name: Login
+header_no_cache: 1
+role:
+  population: ''
+  eval_every_time: false
+register_users: true
+allow:
+  set_drupal_pwd: true
+  default_login: true
+  default_login_roles: {  }
+  default_login_users: '1'
+logout_goto_url: null
+user_register_original: null
+sync:
+  mail: true
+  user_name: true
+autoenablesaml: true
+debug: false

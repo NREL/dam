@@ -1,0 +1,13 @@
+block.settings.big_pipe_demo_block:*:
+  type: block_settings
+  label: 'Big Pipe demo block'
+  mapping:
+    id:
+      type: integer
+      label: 'Identifier for this BigPipe demo block, in case multiple are shown on the same page'
+    html:
+      type: string
+      label: 'HTML'
+    default_duration:
+      type: integer
+      label: 'Default duration (in milliseconds)'

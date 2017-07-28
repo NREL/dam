@@ -1,0 +1,78 @@
+<?php
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\exif\ExifContent;
+use Drupal\Node\NodeInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\exif\ExifHelp;
+
+/**
+ * @author: Jean-Philippe Hautin
+ *
+ */
+
+/**
+ * Implements hook_help().
+ */
+function exif_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.exif':
+      return ExifHelp::content();
+    default :
+      return NULL;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function exif_theme() {
+  return array(
+    'exif_sample' => array(
+      'variables' => [
+        'taxonomy' => 'http://drupal.org/handbook/modules/taxonomy/',
+        'image_path' => NULL,
+        'metadata' => NULL
+      ],
+      'template' => 'exif_sample',
+    ),
+    'exif_helper_page' => array(
+      'variables' => [
+        'message' => NULL,
+        'taxonomy' => 'http://drupal.org/handbook/modules/taxonomy/'
+      ],
+      'template' => 'exif_helper_page'
+    )
+  );
+}
+
+
+/**
+ * implementation of hook_entity_presave (drupal 8)
+ *
+ * Calculate the value for each metadata field so they can be stored correctly.
+ *
+ * @param $entity EntityInterface entity to be saved.
+ *
+ */
+function exif_entity_presave(EntityInterface $entity) {
+  $entityType = '';
+  if ($entity instanceof NodeInterface) {
+    $entityType = 'node';
+  } else if (Drupal::moduleHandler()->moduleExists("media_entity") && $entity instanceof \Drupal\media_entity\MediaInterface) {
+    $entityType = 'media';
+  }
+  if ($entityType != '') {
+    $config = Drupal::configFactory()->get('exif.settings');
+    $shouldUpdateMetadata = $config->get('update_metadata');
+    if (!isset($shouldUpdateMetadata)) {
+      $shouldUpdateMetadata = true;
+    }
+    $inserting = !isset($entity->original);
+    if ($inserting || $shouldUpdateMetadata) {
+      $exifContentHandler = new ExifContent();
+      $exifContentHandler->entity_insert_update($entityType, $entity);
+    }
+  }
+}
+

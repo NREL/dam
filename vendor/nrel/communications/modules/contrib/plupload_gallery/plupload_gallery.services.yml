@@ -1,0 +1,10 @@
+services:
+  access_check.plupload_gallery.has_widget:
+    class: Drupal\plupload_gallery\Access\PlUploadGalleryTabsAccess
+    arguments: ['@plupload_gallery.manager']
+    tags:
+      - { name: access_check, applies_to: _access_plupload_gallery_has_widget }
+
+  plupload_gallery.manager:
+    class: Drupal\plupload_gallery\PlUploadGalleryManager
+    arguments: ['@entity_field.manager', '@entity_display.repository', '@config.manager', '@entity_type.manager']

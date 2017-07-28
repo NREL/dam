@@ -1,0 +1,14 @@
+plupload_widget:
+  title: 'Plupload Widget'
+  js:
+    assets/js/plupload_widget.js: {}
+  css:
+    theme:
+      plupload.css: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
+    - core/drupalSettings
+    - core/drupal.messages
+    - core/drupal.ajax

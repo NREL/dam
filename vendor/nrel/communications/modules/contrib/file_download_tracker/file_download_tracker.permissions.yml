@@ -1,0 +1,5 @@
+# In file_download_tracker.permissions.yml file.
+access all reports:
+  title: 'Access all file download tracker reports'
+  description: 'Access file download tracker reports for per file and per page.'
+  restrict access: TRUE

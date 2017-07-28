@@ -1,0 +1,13 @@
+name: Views Bulk Edit
+type: module
+description: Bulk update the values of an entity.
+# core: 8.x
+package: Views Bulk Edit
+dependencies:
+  - views
+
+# Information added by Drupal.org packaging script on 2017-05-19
+version: '8.x-1.0-beta1'
+core: '8.x'
+project: 'views_bulk_edit'
+datestamp: 1495177090

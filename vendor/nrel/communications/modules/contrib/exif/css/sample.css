@@ -1,0 +1,43 @@
+.metadata-table {
+}
+
+tr.metadata-section {
+    border-top: double cadetblue thin;
+    border-bottom: double cadetblue thin;
+}
+
+.metadata-section td {
+    text-align: center;
+    align-content: center;
+    font-weight: bolder;
+}
+
+.metadata-section:hover {
+    background-color: #f4f5f0;
+}
+
+.metadata-row {
+    display:'table-row';
+
+}
+
+.metadata-row.odd {
+    background-color: #f6f5f0;
+}
+
+
+.metadata-value {
+
+}
+
+.metadata-key {
+    font-weight: bold;
+    width: 250px;
+}
+
+img.sample-image {
+    height: 70px;
+    float: right;
+    margin: 0 0 15px 15px;
+    vertical-align: sub;
+}

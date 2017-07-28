@@ -1,0 +1,62 @@
+# Create the tab where files can be uploaded to a node using the plupload widget
+entity.node.plupload_gallery_uploads:
+  path: '/node/{node}/uploads'
+  defaults:
+    _entity_form: 'node.edit'
+    _title: 'Upload'
+  requirements:
+    _permission: 'administer nodes'
+    _entity_access: 'node.update'
+    _access_plupload_gallery_has_widget : 'TRUE'
+    node: \d+
+  options:
+    _node_operation_route: TRUE
+
+entity.node.plupload_gallery_manage:
+  path: '/node/{node}/manage-images'
+  defaults:
+    _entity_form: 'node.edit'
+    _title: 'Manage Images'
+  requirements:
+    _permission: 'administer nodes'
+    _entity_access: 'node.update'
+    _access_plupload_gallery_has_widget : 'TRUE'
+    node: \d+
+  options:
+    _node_operation_route: TRUE
+
+entity.node.plupload_gallery_gallery:
+  path: '/node/{node}/gallery'
+  defaults:
+#    _controller: '\Drupal\plupload_gallery\Controller\PlUploadGalleryController::viewGallery'
+    _controller: \Drupal\node\Controller\NodeViewController::view
+    _title: 'Gallery'
+  requirements:
+    _permission: 'access content'
+    _access_plupload_gallery_has_widget : 'TRUE'
+#    node: \d+
+  options:
+    _node_operation_route: TRUE
+
+#   Need to restrict to nodes with plupload_gallerys
+
+# The url for the ajax process to add an image as a field
+plupload_gallery.upload_image_handler:
+  path: '/plupload-gallery-handle-image-uploads'
+  defaults:
+    _controller: '\Drupal\plupload_gallery\Controller\PlUploadGalleryController::handleImageUploads'
+    _title: 'Handle image uploads'
+  requirements:
+    _permission: 'access content'
+#    _csrf_token: 'TRUE'
+
+# The url for the ajax process to add an image as an entity reference
+plupload_gallery.upload_entity_handler:
+  path: '/plupload-gallery-handle-entity-uploads'
+  defaults:
+    _controller: '\Drupal\plupload_gallery\Controller\PlUploadGalleryController::handleEntityUploads'
+    _title: 'Handle entity uploads'
+  requirements:
+    _permission: 'access content'
+#    _csrf_token: 'TRUE'
+

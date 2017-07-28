@@ -1,0 +1,6 @@
+services:
+  file_download_tracker.event_subscriber_file_download_tracker:
+    class: Drupal\file_download_tracker\EventSubscriber\FileDownloadTrackerEventSubscriber
+    tags:
+      - { name: 'event_subscriber' }
+

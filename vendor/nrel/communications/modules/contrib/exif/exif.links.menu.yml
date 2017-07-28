@@ -1,0 +1,6 @@
+exif.admin:
+  description: "Exif admin settings"
+  parent: system.admin_config_media
+  route_name: exif.config
+  title: "Exif settings"
+  weight: 100

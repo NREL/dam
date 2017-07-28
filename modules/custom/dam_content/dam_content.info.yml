@@ -1,8 +1,10 @@
 name: dam_content
 type: module
+hidden: TRUE
 description: Test content for DAM Project.
 core: 8.x
 package: DAM
 dependencies:
   - default_content
   - communications_media_entity_image
+  - default_content:default_content

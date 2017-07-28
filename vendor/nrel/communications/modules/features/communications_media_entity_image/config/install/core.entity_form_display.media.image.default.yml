@@ -1,0 +1,189 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.image.field_aperture_value
+    - field.field.media.image.field_camera_model
+    - field.field.media.image.field_colorspace
+    - field.field.media.image.field_exposure_time
+    - field.field.media.image.field_focal_length
+    - field.field.media.image.field_format
+    - field.field.media.image.field_gps_gpslatitude
+    - field.field.media.image.field_gps_gpslongitude
+    - field.field.media.image.field_height
+    - field.field.media.image.field_ifd0_datetime
+    - field.field.media.image.field_image_creation_datetime_te
+    - field.field.media.image.field_iptc_caption
+    - field.field.media.image.field_iptc_keywords
+    - field.field.media.image.field_iso
+    - field.field.media.image.field_media_in_library
+    - field.field.media.image.field_mime
+    - field.field.media.image.field_resolution
+    - field.field.media.image.field_width
+    - field.field.media.image.field_xmp_artist
+    - field.field.media.image.field_xmp_colormode
+    - field.field.media.image.field_xmp_flashfired
+    - field.field.media.image.field_xmp_flashmode
+    - field.field.media.image.field_xmp_keywords
+    - field.field.media.image.field_xmp_orientation
+    - field.field.media.image.field_xmp_title
+    - field.field.media.image.image
+    - image.style.thumbnail
+    - media_entity.bundle.image
+  module:
+    - datetime
+    - image
+    - workbench_moderation
+id: media.image.default
+targetEntityType: media
+bundle: image
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_gps_gpslatitude:
+    weight: 15
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_gps_gpslongitude:
+    weight: 16
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_ifd0_datetime:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_iptc_caption:
+    weight: 17
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_iptc_keywords:
+    weight: 18
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_media_in_library:
+    type: boolean_checkbox
+    weight: 2
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    region: content
+  field_xmp_artist:
+    weight: 9
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_xmp_colormode:
+    weight: 10
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_xmp_flashfired:
+    weight: 12
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_xmp_flashmode:
+    weight: 11
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_xmp_keywords:
+    weight: 14
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_xmp_orientation:
+    weight: 8
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_xmp_title:
+    weight: 13
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  image:
+    type: image_image
+    weight: 0
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    region: content
+  name:
+    type: string_textfield
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  uid:
+    type: entity_reference_autocomplete_tags
+    weight: 4
+    region: content
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  field_aperture_value: true
+  field_camera_model: true
+  field_colorspace: true
+  field_exposure_time: true
+  field_focal_length: true
+  field_format: true
+  field_height: true
+  field_image_creation_datetime_te: true
+  field_iso: true
+  field_mime: true
+  field_resolution: true
+  field_width: true

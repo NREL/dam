@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_ifd0_datetime
+    - media_entity.bundle.image
+  module:
+    - datetime
+id: media.image.field_ifd0_datetime
+field_name: field_ifd0_datetime
+entity_type: media
+bundle: image
+label: 'ifd0 Datetime'
+description: 'The date time (2009:01:23 08:52:43) of the image.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

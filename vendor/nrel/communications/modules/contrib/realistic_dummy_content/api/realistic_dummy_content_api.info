@@ -1,0 +1,20 @@
+name = Realistic Dummy Content API
+description = Allows enabled modules to generate kick-ass demo content (see the Realistic Dummy Content module for an example of how to do this). Do not enable on production sites.
+package = Development
+core = 7.x
+backdrop = 1.x
+tags[] = developer
+
+; Do not use Drupal 7's autoloading mechanism as it does not support namespaces.
+
+; Slow, functional tests.
+files[] = drupal7-simpletests/RealisticDummyContentDatabaseTestCase.test
+
+test_dependencies[] = devel
+
+; Information added by Drupal.org packaging script on 2017-02-27
+version = "8.x-2.0-beta1"
+core = "8.x"
+project = "realistic_dummy_content"
+datestamp = "1488221595"
+

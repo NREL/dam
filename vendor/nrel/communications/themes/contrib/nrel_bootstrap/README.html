@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+<!-- @file Instructions for subtheming using the Less Starterkit. -->
+
+<!-- @defgroup sub_theming_less -->
+
+<!-- @ingroup sub_theming -->
+
+<h1 id="lessstarterkit">Less Starterkit</h1>
+
+<p>Below are instructions on how to create a Bootstrap sub-theme using a Less
+preprocessor.</p>
+
+<ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#setup">Additional Setup</a></li>
+<li><a href="#overrides">Overrides</a></li>
+</ul>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ul>
+<li>Read the @link getting_started Getting Started @endlink and @link sub_theming Sub-theming @endlink documentation topics.</li>
+<li>You must understand the basic concept of using the <a href="http://lesscss.org">Less</a> CSS pre-processor.</li>
+<li>You must use a <strong><a href="https://www.google.com/search?q=less+compiler">local Less compiler</a></strong>.</li>
+<li>You must use the <a href="https://github.com/twbs/bootstrap/releases">Bootstrap Framework Source Files</a> ending in the <code>.less</code>
+ extension, not files ending in <code>.css</code>.</li>
+</ul>
+
+<h2 id="additionalsetupsetup">Additional Setup {#setup}</h2>
+
+<p>Download and extract the <strong>latest</strong> 3.x.x version of
+<a href="https://github.com/twbs/bootstrap/releases">Bootstrap Framework Source Files</a> into the root of your new sub-theme. After
+it has been extracted, the directory should be renamed (if needed) so it reads
+<code>./THEMENAME/bootstrap</code>.</p>
+
+<p>If for whatever reason you have an additional <code>bootstrap</code> directory wrapping the
+first <code>bootstrap</code> directory (e.g. <code>./THEMENAME/bootstrap/bootstrap</code>), remove the
+wrapping <code>bootstrap</code> directory. You will only ever need to touch these files if
+or when you upgrade your version of the <a href="http://getbootstrap.com">Bootstrap Framework</a>.</p>
+
+<p>{.alert.alert-warning} <strong>WARNING:</strong> Do not modify the files inside of
+<code>./THEMENAME/bootstrap</code> directly. Doing so may cause issues when upgrading the
+<a href="http://getbootstrap.com">Bootstrap Framework</a> in the future.</p>
+
+<h2 id="overridesoverrides">Overrides {#overrides}</h2>
+
+<p>The <code>./THEMENAME/less/variable-overrides.less</code> file is generally where you will
+the majority of your time overriding the variables provided by the <a href="http://getbootstrap.com">Bootstrap
+Framework</a>.</p>
+
+<p>The <code>./THEMENAME/less/bootstrap.less</code> file is nearly an exact copy from the
+<a href="https://github.com/twbs/bootstrap/releases">Bootstrap Framework Source Files</a>. The only difference is that it injects the
+<code>variable-overrides.less</code> file directly after it has imported the <a href="http://getbootstrap.com">Bootstrap
+Framework</a>&#8217;s <code>variables.less</code> file. This allows you to easily override variables
+without having to constantly keep up with newer or missing variables during an
+upgrade.</p>
+
+<p>The <code>./THEMENAME/less/overrides.less</code> file contains various Drupal overrides to
+properly integrate with the <a href="http://getbootstrap.com">Bootstrap Framework</a>. It may contain a few
+enhancements, feel free to edit this file as you see fit.</p>
+
+<p>The <code>./THEMENAME/less/style.less</code> file is the glue that combines the
+<a href="https://github.com/twbs/bootstrap/releases">Bootstrap Framework Source Files</a> and <code>overrides.less</code> files together.
+Generally, you will not need to modify this file unless you need to add or
+remove files to be imported. This is the file that you should compile to
+<code>./THEMENAME/css/styles.css</code> (note the same file name, using a different
+extension of course).</p>
+
+<h4 id="seealso:">See also:</h4>
+
+<ul>
+<li>@link theme_settings Theme Settings @endlink</li>
+<li>@link templates Templates @endlink</li>
+<li>@link plugins Plugin System @endlink</li>
+</ul>
+
+</body>
+</html>

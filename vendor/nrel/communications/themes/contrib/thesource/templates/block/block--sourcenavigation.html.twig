@@ -1,0 +1,140 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a block.
+ *
+ * Available variables: - $block->subject: Block title. - $content: Block
+ * content. - $block->module: Module that generated the block. - $block->delta:
+ * An ID for the block, unique within each module. - $block->region: The block
+ * region embedding the current block. - $classes: String of classes that can be
+ * used to style contextually through CSS. It can be manipulated through the
+ * variable $classes_array from preprocess functions. The default values can be
+ * one or more of the following: - block: The current template type, i.e.,
+ * "theming hook". - block-[module]: The module generating the block. For
+ * example, the user module is responsible for handling the default user
+ * navigation block. In that case the class would be 'block-user'. -
+ * $title_prefix (array): An array containing additional output populated by
+ * modules, intended to be displayed in front of the main title tag that appears
+ * in the template. - $title_suffix (array): An array containing additional
+ * output populated by modules, intended to be displayed after the main title
+ * tag that appears in the template.
+ *
+ * Helper variables: - $classes_array: Array of html class attribute values. It
+ * is flattened into a string within the variable $classes. - $block_zebra:
+ * Outputs 'odd' and 'even' dependent on each block region. - $zebra: Same
+ * output as $block_zebra but independent of any block region. - $block_id:
+ * Counter dependent on each block region. - $id: Same output as $block_id but
+ * independent of any block region. - $is_front: Flags true when presented in
+ * the front page. - $logged_in: Flags true when the current user is a logged-in
+ * member. - $is_admin: Flags true when the current user is an administrator. -
+ * $block_html_id: A valid HTML ID and guaranteed unique.
+ *
+ * @ingroup templates
+ *
+ * @see bootstrap_preprocess_block()
+ * @see template_preprocess()
+ * @see template_preprocess_block()
+ * @see bootstrap_process_block()
+ * @see template_process()
+ */
+#}
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+    'clearfix',
+  ]
+%}
+<section{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes.addClass('block-title') }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</section>
+
+<!-- == TOP NAVIGATION == -->
+<!--stopindex-->
+<div class="navbar-wrapper corporate-topnav" id="topnav">
+  <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container">
+
+      <div class="row">
+		    <div class="col-sm-6">
+          <ul class="nav navbar-nav navbar-left">
+
+            <li class="dropdown" data-topnav="organizations"><a href="https://thesource.nrel.gov" class="dropdown-toggle" data-toggle="dropdown">Organizations <span class="fa fa-angle-down hidden-xs"></span></a>
+
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="http://thesource.nrel.gov/communications/">Communications &amp; Public Affairs</a></li>
+                <li><a href="http://thesource.nrel.gov/director/">Director</a></li>
+					      <li><a href="https://thesourcee.nrel.gov/eshq/ ">Environment, Safety, Health &amp; Quality</a></li>
+                <li><a href="http://thesource.nrel.gov/general-counsel/">General Counsel</a></li>
+                <li><a href="http://thesource.nrel.gov/hr/">Human Resources</a></li>
+					      <li><a href="http://thesource.nrel.gov/its/">Information Technology Services</a></li>
+                <li><a href="http://thesource.nrel.gov/internal-audit/">Internal Audit</a></li>
+                <li><a href="https://sp2013.nrel.gov/sites/ocfo">Office of the CFO</a></li>
+                <li><a href="http://thesource.nrel.gov/ombuds/">Ombuds</a></li>
+                <li><a href="https://thesourcee.nrel.gov/procurement">Procurement</a></li>
+                <li><a href="https://thesourcee.nrel.gov/science-technology/">Science &amp; Technology</a></li>
+                <li><a href="http://thesource.nrel.gov/security/">Security &amp; Emergency Preparedness</a></li>
+                <li><a href="https://thesourcee.nrel.gov/site-operations/index.html">Site Operations</a></li>
+                <li><a href="http://thesource.nrel.gov/techtransfer/">Technology Transfer</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown" data-topnav="tools"><a href="https://thesource.nrel.gov" class="dropdown-toggle" data-toggle="dropdown">Business Tools <span class="fa fa-angle-down hidden-xs"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="https://myaccess.nrel.gov/workday">Workday</a></li>
+                <li><a href="https://myaccess.nrel.gov/travelexpense">Concur</a></li>
+						    <li><a href="https://sp2013.nrel.gov/sites/BD/Pages/Home.aspx">Business and Program Development Portal</a></li>
+                <li><a href="https://epmprod.nrel.gov:4443/workspace/index.jsp">Enterprise Project Planning (EPP)</a></li>
+                <li><a href="https://passagepoint.nrel.gov/pp/wi1/">Expected Visitor's Notification</a></li>
+                <li><a href="https://nrel.service-now.com/ess/">IT Self Service</a></li>
+                <li><a href="https://nrel.plateau.com/learning/user/login.jsp">Learning Gateway</a></li>
+                <li><a href="https://nquire.nrel.gov:4447/analytics/saw.dll?dashboard&amp;PortalPath=%2Fshared%2FDashboards%2F_portal%2FNQuIRE%20Reporting%20Hub">NQuIRE</a></li>
+                <li><a href="https://pricingtool.nrel.gov/">OCFO Pricing Tool (CDW)</a></li>
+
+                <li><a href="https://erp.nrel.gov/">Oracle EBS</a></li>
+                <li><a href="https://sp2013.nrel.gov/Pages/Home.aspx">ThePOINT</a></li>
+                <li><a href="http://thesource.nrel.gov/business-tools/">See All</a></li>
+              </ul>
+            </li>
+
+
+            <li><a href="http://thesource.nrel.gov/src-index/">A-Z Index</a></li>
+
+          </ul>
+        </div>
+
+
+
+        <div class="col-sm-6">
+          <div class="navbar-collapse collapse hidden-xs">
+
+            <form action="http://thesource.nrel.gov/phonebook/index.php" method="post" class="searchbar-form form-inline" >
+
+              <div class="form-group">
+                <label for="search" class="sr-only">Search Employee Directory</label>
+                <input id="emp-search-mobile" type="text" placeholder="Search Employee Directory" name="zzsearch" class="form-control">
+      					<input name="attribute" type="hidden" value="name">
+      					<input name="criterion" type="hidden" value="contains">
+
+                <button type="submit" class="btn btn-default">Search</button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--startindex-->
+<!-- == END TOP NAVIGATION == -->

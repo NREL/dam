@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Textimage - Installation scripts.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function textimage_uninstall() {
+  \Drupal::service('textimage.factory')->flushAll();
+}
+
+/**
+ * Clear caches due to update of the 'textimage.factory' service.
+ */
+function textimage_update_8001() {
+  // Empty update to cause a cache rebuild.
+}

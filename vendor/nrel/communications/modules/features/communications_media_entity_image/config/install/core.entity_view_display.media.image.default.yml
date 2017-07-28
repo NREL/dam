@@ -1,0 +1,291 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.image.field_aperture_value
+    - field.field.media.image.field_camera_model
+    - field.field.media.image.field_colorspace
+    - field.field.media.image.field_exposure_time
+    - field.field.media.image.field_focal_length
+    - field.field.media.image.field_format
+    - field.field.media.image.field_gps_gpslatitude
+    - field.field.media.image.field_gps_gpslongitude
+    - field.field.media.image.field_height
+    - field.field.media.image.field_ifd0_datetime
+    - field.field.media.image.field_image_creation_datetime_te
+    - field.field.media.image.field_iptc_caption
+    - field.field.media.image.field_iptc_keywords
+    - field.field.media.image.field_iso
+    - field.field.media.image.field_media_in_library
+    - field.field.media.image.field_mime
+    - field.field.media.image.field_resolution
+    - field.field.media.image.field_width
+    - field.field.media.image.field_xmp_artist
+    - field.field.media.image.field_xmp_colormode
+    - field.field.media.image.field_xmp_flashfired
+    - field.field.media.image.field_xmp_flashmode
+    - field.field.media.image.field_xmp_keywords
+    - field.field.media.image.field_xmp_orientation
+    - field.field.media.image.field_xmp_title
+    - field.field.media.image.image
+    - media_entity.bundle.image
+  module:
+    - datetime
+    - field_group
+    - image
+third_party_settings:
+  field_group:
+    group_image_exif:
+      children:
+        - field_camera_model
+        - field_iso
+        - field_exposure_time
+        - field_aperture_value
+        - field_focal_length
+      parent_name: group_metadata
+      weight: 6
+      format_type: fieldset
+      format_settings:
+        description: ''
+        classes: ''
+        id: ''
+      label: Exif
+    group_imagick:
+      children:
+        - field_format
+        - field_resolution
+        - field_colorspace
+      parent_name: group_metadata
+      weight: 7
+      format_type: fieldset
+      format_settings:
+        description: ''
+        classes: ''
+        id: ''
+      label: Imagick
+    group_metadata:
+      children:
+        - group_image_exif
+        - group_imagick
+      parent_name: ''
+      weight: 5
+      format_type: fieldset
+      format_settings:
+        label: Metadata
+        description: ''
+        id: ''
+        classes: ''
+      label: Metadata
+id: media.image.default
+targetEntityType: media
+bundle: image
+mode: default
+content:
+  field_aperture_value:
+    weight: 7
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_camera_model:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_colorspace:
+    weight: 23
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_exposure_time:
+    weight: 6
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_focal_length:
+    weight: 8
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_format:
+    weight: 21
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_gps_gpslatitude:
+    weight: 33
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_gps_gpslongitude:
+    weight: 34
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_height:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_ifd0_datetime:
+    weight: 24
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_image_creation_datetime_te:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_iptc_caption:
+    weight: 35
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_iptc_keywords:
+    weight: 36
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_iso:
+    weight: 5
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_mime:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_resolution:
+    weight: 22
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_width:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_xmp_artist:
+    weight: 27
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_xmp_colormode:
+    weight: 28
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_xmp_flashfired:
+    weight: 30
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_xmp_flashmode:
+    weight: 29
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_xmp_keywords:
+    weight: 32
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_xmp_orientation:
+    weight: 26
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_xmp_title:
+    weight: 31
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  image:
+    type: image
+    weight: 0
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  field_media_in_library: true
+  name: true
+  thumbnail: true
+  uid: true

@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+# Common code to prepare to un a command on a throwaway container.
+#
+
+cd "$DEVPATH"
+DOCKERFILE="frameworks/$COMPOSERCONTAINER/Dockerfile"
+CONTAINER="$(docker-compose ps -q $COMPOSERCONTAINER)"
+
+UNIQUEIMAGENAME="$CONTAINER"_image
+
+IMAGE=$(docker images -q "$UNIQUEIMAGENAME" 2>/dev/null)
+
+if [ -z "$IMAGE" ];then
+  docker build -f="$DOCKERFILE" -t "$UNIQUEIMAGENAME" .
+  IMAGE=$(docker images -q "$UNIQUEIMAGENAME")
+fi
+
+# See http://stackoverflow.com/questions/36489696
+NETWORK=$(docker inspect "$CONTAINER"|grep NetworkMode|sed 's/^[^"]*"[^"]*"[^"]*"//g'|sed 's/".*$//g')

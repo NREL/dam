@@ -1,0 +1,16 @@
+type: module
+name: Realistic Dummy Content API
+description: Allows enabled modules to generate kick-ass demo content (see the Realistic Dummy Content module for an example of how to do this). Do not enable on production sites.
+package: Development
+# core: 8.x
+tags:
+  - developer
+
+test_dependencies:
+  - devel
+
+# Information added by Drupal.org packaging script on 2017-02-27
+version: '8.x-2.0-beta1'
+core: '8.x'
+project: 'realistic_dummy_content'
+datestamp: 1488221595

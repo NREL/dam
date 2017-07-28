@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - views_bulk_edit
+    - node
+id: node_bulk_edit
+label: 'Edit'
+type: node
+plugin: views_bulk_edit:node
+configuration: {  }

@@ -1,0 +1,17 @@
+{
+  "name": "drupal/linkiti_media_file_direct",
+  "description": "Linkit media file direct",
+  "type": "drupal-module",
+  "homepage": "http://drupal.org/project/linkit_media_file_direct",
+  "authors": [
+    {
+      "name": "Simon Lindsay",
+      "homepage": "https://www.drupal.org/u/singularo"
+    }
+  ],
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/linkit_media_file_direct"
+  },
+  "license": "GPL-2.0+"
+}
+

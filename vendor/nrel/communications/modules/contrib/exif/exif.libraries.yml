@@ -1,0 +1,21 @@
+exif:
+    version: 1.0
+    css:
+        theme:
+            css/exif.css: {}
+
+exif-admin:
+    version: VERSION
+    css:
+        theme:
+            css/exif.admin.css: {}
+
+exif-sample:
+    version: VERSION
+    css:
+        theme:
+            css/sample.css: {}
+    js:
+      js/sample.js: {}
+    dependencies:
+      - core/jquery

@@ -1,0 +1,11 @@
+name: communications_person
+description: 'Configurations for NREL people.'
+type: module
+core: 8.x
+dependencies:
+  - field
+  - file
+  - image
+  - user
+version: 8.x-1.0
+package: Communications

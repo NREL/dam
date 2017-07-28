@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - big_pipe_demo
+  theme:
+    - bartik
+id: bigpipeanonymoussessionblock
+theme: bartik
+region: sidebar_first
+weight: -100
+provider: null
+plugin: big_pipe_anon_session_block
+settings:
+  id: big_pipe_anon_session_block
+  label: 'BigPipe anonymous session block'
+  provider: big_pipe_demo
+  label_display: '0'
+visibility: {  }

@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_iptc_caption
+    - media_entity.bundle.image
+    - taxonomy.vocabulary.photographs_metadata
+id: media.image.field_iptc_caption
+field_name: field_iptc_caption
+entity_type: media
+bundle: image
+label: 'iptc caption'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      photographs_metadata: photographs_metadata
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

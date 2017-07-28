@@ -1,0 +1,83 @@
+# Schema for the Textimage module.
+
+# Schema for settings.
+textimage.settings:
+  type: config_object
+  label: 'Textimage settings'
+  mapping:
+    debug:
+      type: boolean
+      label: 'Display debugging information'
+    default_extension:
+      type: string
+      label: 'Default image file extension'
+    url_generation:
+      type: mapping
+      label: 'URL based generation'
+      mapping:
+        enabled:
+          type: boolean
+          label: 'Status of URL based generation'
+        text_separator:
+          type: string
+          label: 'Sequence of characters to be used to split the URL text string'
+    default_font:
+      type: mapping
+      label: 'Default font'
+      mapping:
+        name:
+          type: string
+          label: 'Default font name'
+        uri:
+          type: string
+          label: 'Default font file URI'
+
+# Schema for Textimage third party settings for image styles.
+image.style.*.third_party.textimage:
+  type: mapping
+  label: 'Textimage settings for image styles'
+  mapping:
+    uri_scheme:
+      type: string
+      label: 'Textimage derivative scheme destination'
+
+# Schema for Textimage provided field formatter settings.
+field.formatter.settings.textimage_text_field_formatter:
+  type: mapping
+  label: 'Textimage text field formatter settings'
+  mapping:
+    image_link:
+      type: string
+      label: 'Link image to'
+    image_text_values:
+      type: string
+      label: 'Multi-value text field'
+    image_style:
+      type: string
+      label: 'Image style'
+    image_alt:
+      type: text
+      label: 'Image alternate text'
+    image_title:
+      type: text
+      label: 'Image title'
+    image_build_deferred:
+      type: boolean
+      label: 'Defer building of textimage to subsequent request'
+
+field.formatter.settings.textimage_image_field_formatter:
+  type: mapping
+  label: 'Textimage image field formatter settings'
+  mapping:
+    image_link:
+      type: string
+      label: 'Link image to'
+    image_style:
+      type: string
+      label: 'Image style'
+    image_alt:
+      type: text
+      label: 'Image alternate text'
+    image_title:
+      type: text
+      label: 'Image title'

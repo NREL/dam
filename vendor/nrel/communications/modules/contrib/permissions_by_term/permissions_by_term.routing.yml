@@ -1,0 +1,7 @@
+permissions_by_term.autocomplete_multiple:
+  path: '/permissions-by-term/autocomplete'
+  defaults:
+    _title: ''
+    _controller: '\Drupal\permissions_by_term\Controller\PermissionsByTermController::autoCompleteMultiple'
+  requirements:
+    _permission: 'access user profiles'

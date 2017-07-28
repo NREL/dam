@@ -1,0 +1,15 @@
+configure: exif.config
+# core: 8.x
+dependencies: 
+  - taxonomy
+  - image
+description: "Display image metadata (exif and iptc)."
+name: Exif
+package: Media
+type: module
+# version: 8.x-1.x-dev
+# Information added by Drupal.org packaging script on 2016-10-23
+version: '8.x-1.0'
+core: '8.x'
+project: 'exif'
+datestamp: 1477243141

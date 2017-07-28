@@ -1,0 +1,10 @@
+date_format_exif: "Y-m-d\\TH:i:s"
+granularity: 0
+update_metadata: false
+write_empty_values: false
+extraction_solution: "php_extensions"
+exiftool_location: "exiftool"
+vocabulary: "0"
+mediatypes: []
+nodetypes: []
+

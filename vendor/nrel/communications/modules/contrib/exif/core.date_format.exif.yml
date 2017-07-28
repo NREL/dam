@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: exif
+label: 'Exif Datetime'
+locked: false
+pattern: 'Y:m:d H:i:s'

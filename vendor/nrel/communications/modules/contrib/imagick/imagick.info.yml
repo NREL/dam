@@ -1,0 +1,15 @@
+name: Imagick
+type: module
+description: 'Imagick toolkit for image manipulation within Drupal'
+package: Imagick
+# version: VERSION
+# core: 8.x
+configure: system.image_toolkit_settings
+dependencies:
+ - drupal:image
+
+# Information added by Drupal.org packaging script on 2017-02-16
+version: '8.x-1.0'
+core: '8.x'
+project: 'imagick'
+datestamp: 1487249886

@@ -1,0 +1,7 @@
+colorpicker:
+  verion: VERSION
+  js:
+    imagick.admin.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery.farbtastic

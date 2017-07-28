@@ -1,0 +1,87 @@
+
+Slick Media 8.x-1.0-dev, 2016-12-27
+-----------------------------------
+- Marked it Beta7.
+- Updated to latest Slick Beta6.
+
+Slick Media 8.x-1.0-dev, 2016-12-09
+-----------------------------------
+- Supported Media Entity to set dimensions once to reduce method calls.
+
+Slick Media 8.x-1.0-dev, 2016-11-30
+-----------------------------------
+- #2831509 by gausarts, joville: Incorrect module dependency?
+
+Slick Media 8.x-1.0-dev, 2016-11-29
+-----------------------------------
+- Updated to latest Blazy Beta5 and Slick Beta5.
+
+Slick Media 8.x-1.0-dev, 2016-10-26
+-----------------------------------
+- Updated to latest Blazy and Slick.
+
+Slick Media 8.x-1.0-dev, 2016-10-13
+-----------------------------------
+- Removed the no-longer-used \Drupal\video_embed_field\ProviderManagerInterface.
+
+Slick Media 8.x-1.0-dev, 2016-09-29
+-----------------------------------
+- Added optional third parameter to SlickMediaFormatter::buildMedia().
+
+Slick Media 8.x-1.0-dev, 2016-08-30
+-----------------------------------
+- Changed formatter name to Title case.
+
+Slick Media 8.x-1.0-dev, 2016-08-29
+-----------------------------------
+- Refined SlickMediaFormatter::buildMedia() to only accept slick_media plugin.
+- Removed unused "nested_*" options.
+
+Slick Media 8.x-1.0-dev, 2016-07-15
+-----------------------------------
+- A few cleanups.
+
+Slick Media 8.x-1.0-dev, 2016-06-10
+-----------------------------------
+- Added Blazy check to simplify Blazy inclusion later on.
+
+Slick Media 8.x-1.0-dev, 2016-04-11
+-----------------------------------
+- Updated slick_media image style dimension to be larger enough.
+
+Slick Media 8.x-1.0-dev, 2016-04-06
+-----------------------------------
+- Added import of Drupal\blazy\Dejavu\BlazyVideoTrait to share VEF stuffs with
+  Slick video.
+- Removed theme_slick_media() to use theme_blazy().
+- Removed slick-media.html.twig to use blazy.html.twig.
+
+Slick Media 8.x-1.0-dev, 2016-04-05
+-----------------------------------
+- #2699797 by gausarts: Integrate with VEF.
+
+Slick Media 8.x-1.0-dev, 2016-04-03
+-----------------------------------
+- Added theme_slick_media() as a replacement for theme_slick_image().
+  Be sure to clear cache.
+
+Slick Media 8.x-1.0-dev, 2016-03-28
+-----------------------------------
+- Added dependency on Blazy as per [#2693089]
+
+Slick Media 8.x-1.0-dev, 2016-03-23
+-----------------------------------
+- Added potential dependency on Blazy to reduce DRY stuffs.
+
+Slick Media 8.x-1.0-dev, 2016-02-11
+-----------------------------------
+- Updated thumbnail building to use a single function call instead.
+
+Slick Media 8.x-1.0-dev, 2016-01-18
+-----------------------------------
+- README.txt cleanup.
+
+Slick Media 8.x-1.0-dev, 2016-01-18
+-----------------------------------
+- Added the module files.
+- Initial commit.

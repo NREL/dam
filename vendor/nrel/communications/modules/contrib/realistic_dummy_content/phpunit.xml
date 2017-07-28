@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Used during continuous integration testing by the PHP Docker container -->
+<!-- called in ./developer/lib/unit.sh -->
+<phpunit>
+  <testsuites>
+    <testsuite name="realistic_dummy_content">
+      <directory>./api/src/test</directory>
+    </testsuite>
+  </testsuites>
+</phpunit>

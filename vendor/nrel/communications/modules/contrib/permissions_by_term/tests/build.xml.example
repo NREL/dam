@@ -1,0 +1,31 @@
+<project name="Permissions by Term" basedir="." default="none">
+
+    <property name="db-name" value="pbt_d8" />
+    <property name="db-username" value="root" />
+    <property name="db-password" value="password" />
+    <property name="module-root-dir" value="~/Websites/pbt-d8/modules/permissions_by_term" />
+
+    <target name="resetDbForTests"
+            description="Resets the database by the tests dump.">
+        <echo msg="Deleting old database." />
+        <exec command="mysql -u${db-username} -p${db-password} -e 'drop database ${db-name}'"
+              passthru="true"
+              checkreturn="false" />
+        <echo msg="Create new empty database." />
+        <exec command="mysql -u${db-username} -p${db-password} -e 'create database ${db-name}'"
+              passthru="true"
+              checkreturn="true" />
+        <echo msg="Import database dump." />
+        <exec command="mysql -u${db-username} -p${db-password} ${db-name} &lt; ${module-root-dir}/tests/codeception/tests/_data/dump.sql"
+              passthru="true"
+              checkreturn="true" />
+    </target>
+
+    <target name="dumpTestsDb"
+            description="Dumps the database for tests.">
+        <exec command="mysqldump -u${db-username} -p${db-password} ${db-name} > ${module-root-dir}/tests/codeception/tests/_data/dump.sql"
+              passthru="true"
+              checkreturn="true" />
+    </target>
+
+</project>

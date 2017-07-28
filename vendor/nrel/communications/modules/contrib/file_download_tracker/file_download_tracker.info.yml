@@ -1,0 +1,12 @@
+name: File Download Tracker
+type: module
+description: Tracking and generating reports for file downloads
+# core: 8.x
+dependencies:
+  - file_entity
+
+# Information added by Drupal.org packaging script on 2017-02-22
+version: '8.x-1.0'
+core: '8.x'
+project: 'file_download_tracker'
+datestamp: 1487763186
