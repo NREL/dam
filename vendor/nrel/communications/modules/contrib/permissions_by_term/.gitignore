@@ -1,4 +1,0 @@
-# Ignore test run data like screenshots etc.
-tests/codeception/tests/_output/*
-
-tests/build.xml

@@ -1,8 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-name: 'photographs metadata'
-vid: photographs_metadata
-description: 'information related to photographs'
-hierarchy: 0
-weight: 0

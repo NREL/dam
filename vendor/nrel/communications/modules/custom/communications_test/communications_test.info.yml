@@ -1,7 +1,0 @@
-name: communications_test
-type: module
-description: Install communications test data.
-core: 8.x
-package: NREL
-dependencies:
-  - comment
