@@ -25,7 +25,8 @@ function dam_install() {
     'dam_search',
     //    'dam_elastic_search',
     'dam_slider',
-    'dam_bulk_media_entity_image_uplo'
+    'dam_bulk_media_entity_image_uplo',
+    'webprofiler'
   ];
 
   foreach ($modules as $module) {
