@@ -7,4 +7,3 @@ package: DAM
 dependencies:
   - default_content
   - communications_media_entity_image
-  - default_content:default_content
