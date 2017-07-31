@@ -28,6 +28,7 @@ dependencies:
     - linkit_media_file_direct
     - views_bulk_edit
     - vbo_export
+    - coffee
 base profile:
   name: communications
 version: '8.x-1.00'
