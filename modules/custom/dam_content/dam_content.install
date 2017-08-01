@@ -721,4 +721,25 @@ function dam_content_install() {
               'VAWT' => array())));
 
   TermBuild::communications_term_create('structured_keywords', $tags);
+
+  $tags = array(
+    'NREL Photographer' => array(),
+    'NREL Staff' => array(),
+    'Contract Photographer' => array(),
+    'Outside Photographer' => array());
+
+  TermBuild::communications_term_create('job_title', $tags);
+
+  $tags = array(
+    'Glickson, Amy' => array(),
+    'Parsons, David' => array());
+
+  TermBuild::communications_term_create('media_contributor', $tags);
+
+  $tags = array(
+    'DOE' => array(),
+    'NREL' => array());
+
+  TermBuild::communications_term_create('organization', $tags);
+
 }

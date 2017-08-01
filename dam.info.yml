@@ -25,6 +25,7 @@ dependencies:
     - views_bulk_edit
     - vbo_export
     - coffee
+    - taxonomy_manager
 base profile:
   name: communications
 version: '8.x-1.00'
