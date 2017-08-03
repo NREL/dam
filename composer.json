@@ -51,6 +51,7 @@
         "drupal/taxonomy_manager": "1.x-dev",
         "drupal/default_content": "^1.0@alpha",
         "drupal/elasticsearch_aws_connector": "5.x-dev",
-        "drupal/elasticsearch_connector": "5.x-dev"
+        "drupal/elasticsearch_connector": "5.x-dev",
+        "drupal/decoupled_auth": "^1.0@alpha"
     }
 }
