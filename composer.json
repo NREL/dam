@@ -54,7 +54,7 @@
         "drupal/elasticsearch_aws_connector": "5.x-dev",
         "drupal/elasticsearch_connector": "5.x-dev",
         "drupal/file_entity": "2.x-dev",
-        "drupal/page_manager": "^4.0"
+        "drupal/page_manager": "^4.0",
         "drupal/taxonomy_manager": "1.x-dev"
     }
 }
