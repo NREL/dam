@@ -47,7 +47,7 @@
         }
     },
     "require": {
-        "nrel/communications": "~1.0.2",
+        "nrel/communications": ">=1.1.1",
         "drupal/taxonomy_manager": "1.x-dev",
         "drupal/default_content": "^1.0@alpha",
         "drupal/elasticsearch_aws_connector": "5.x-dev",
