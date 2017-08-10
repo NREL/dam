@@ -52,6 +52,8 @@
         "drupal/default_content": "^1.0@alpha",
         "drupal/elasticsearch_aws_connector": "5.x-dev",
         "drupal/elasticsearch_connector": "5.x-dev",
-        "drupal/decoupled_auth": "^1.0@alpha"
+        "drupal/decoupled_auth": "^1.0@alpha",
+        "brightcove/api": "^1.0",
+        "drupal/file_entity": "2.x-dev"
     }
 }
