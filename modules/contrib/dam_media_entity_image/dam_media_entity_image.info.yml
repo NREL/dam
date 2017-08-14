@@ -1,0 +1,7 @@
+name: dam_media_entity_image
+type: module
+description: Media Entity Extras.
+core: 8.x
+package: DAM
+dependencies:
+  - media_entity_image
