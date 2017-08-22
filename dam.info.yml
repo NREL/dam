@@ -14,7 +14,7 @@ dependencies:
     - realistic_dummy_content
     - externalauth
     # - simplesamlphp_auth
-    - page_manager_ui
+    # - page_manager_ui - broken - https://www.drupal.org/node/2875000
     - imagemagick
     - image_effects
     - jquery_colorpicker
