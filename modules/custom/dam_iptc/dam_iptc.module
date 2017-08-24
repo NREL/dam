@@ -1,0 +1,293 @@
+<?php
+
+/**
+ * @file
+ * Contains dam_iptc.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\taxonomy\Entity\Term;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\FieldableEntityInterface;
+use DrupalCore\File\FileSystem;
+use Drupal\dam_iptc\IPTC;
+
+/**
+ * Implements hook_help().
+ */
+function dam_iptc_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dam_iptc module.
+    case 'help.page.dam_iptc':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dam_iptc_theme() {
+  return [
+    'dam_iptc' => [
+      'render element' => 'children',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_form_alter() on behalf of dam_iptc.module.
+ */
+function dam_iptc_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'media_bundle_edit_form') {
+    if ($form['type']['#default_value'] == 'image') {
+
+      $form['type_configuration']['gather_iptc'] = [
+        '#title' => t('Whether to Gather IPTC data.'),
+        '#description' => t('Gather IPTC data using exif_read_data().'),
+        '#type' => 'select',
+        '#default_value' => empty(\Drupal::configFactory()->getEditable('dam_iptc.settings')->get('gather_iptc')) ? 0 : \Drupal::configFactory()->getEditable('dam_iptc.settings')->get('gather_iptc'),
+        '#options' => [
+          0 => t('No'),
+          1 => t('Yes'),
+        ],
+      ];
+
+      if (\Drupal::configFactory()->getEditable('dam_iptc.settings')->get('gather_iptc') == 1) {
+        $iptc_class = new IPTC();
+
+        $entityManager = \Drupal::service('entity_field.manager');
+        $fields = $entityManager->getFieldDefinitions('media', 'image');
+        $final_fields = [];
+        $final_fields[''] = t('- Skip Field -');
+        foreach ($fields as $key => $field) {
+          $field_info = $field->getFieldStorageDefinition();
+          if ($field_info->isBaseField() == FALSE) {
+            $final_fields[$key] = $field->label();
+          }
+        }
+
+        $iptc_fields_and_labels = $iptc_class->dam_iptc_full_field_list();
+        foreach ($iptc_fields_and_labels AS $label => $key) {
+          $label_machine = str_replace(' ', '_', $label);
+          $form['field_mapping'][$label_machine] = [
+            '#type' => 'select',
+            '#title' => t("IPTC: " . $label),
+            '#options' => $final_fields,
+            '#default_value' => empty(\Drupal::configFactory()->getEditable('dam_iptc.settings')->get($label_machine)) ? 0 : \Drupal::configFactory()->getEditable('dam_iptc.settings')->get($label_machine),
+          ];
+        }
+      }
+
+      // Add submit handler to record IPTC settings
+      foreach (array_keys($form['actions']) as $action) {
+        if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+          $form['actions']['submit']['#submit'][] = 'dam_iptc_media_bundle_edit_form_submit';
+        }
+      }
+    }
+  }
+  if ($form_id == 'media_image_edit_form' && $form_state->getFormObject()->getOperation() == 'edit' && \Drupal::currentUser()->hasPermission('embed iptc data info images')) {
+    $config = Drupal::configFactory()->get('dam_iptc.settings');
+    $shouldUpdateMetadata = $config->get('gather_iptc');
+    if ($shouldUpdateMetadata == 1) {
+      $form['dam_iptc_embed'] = [
+        '#type' => 'checkbox',
+        '#title' => t('Embed IPTC information on save?'),
+      ];
+    }
+  }
+}
+
+function dam_iptc_media_bundle_edit_form_submit($form, FormStateInterface $form_state) {
+  $iptc_class = new IPTC();
+  \Drupal::configFactory()->getEditable('dam_iptc.settings')
+    ->set('gather_iptc', $form_state->getValue('type_configuration')['gather_iptc'])
+    ->save();
+  $iptc_fields_and_labels = $iptc_class->dam_iptc_full_field_list();
+  foreach ($iptc_fields_and_labels AS $label => $key) {
+    $label_machine = str_replace(' ', '_', $label);
+    if (isset($form_state->getValue('field_mapping')[$label_machine])) {
+      \Drupal::configFactory()->getEditable('dam_iptc.settings')
+        ->set($label_machine, $form_state->getValue('field_mapping')[$label_machine])
+        ->save();
+    }
+  }
+}
+
+/*
+ * Exract IPTC fields from an entity's image and add the values to that entity.
+ */
+function dam_iptc_extract_iptc_into_entity($entity) {
+  // First etract the full path to the image and validate it is JPEG or TIFF.
+  if ($file_absolute_path = dam_iptc_get_image_filepath_from_enitity($entity)) {
+    $itpc_field_values = dam_iptc_extract_iptc_from_image($file_absolute_path);
+    if (count($itpc_field_values) > 0) {
+      $bundle_fields = \Drupal::getContainer()->get('entity_field.manager')->getFieldDefinitions('media', 'image');
+      foreach ($itpc_field_values AS $label => $value) {
+        $label_machine = str_replace(' ', '_', $label);
+        $machine_field = \Drupal::configFactory()
+          ->getEditable('dam_iptc.settings')
+          ->get($label_machine);
+        if ($machine_field <> '') {
+          $field_definition = $bundle_fields[$machine_field];
+          $settings = $field_definition->getSettings();
+          // Check if this field is an entity reference to a taxonomy term
+          if (isset($settings['target_type']) && $settings['target_type'] == 'taxonomy_term') {
+            $vocabulary = key($settings['handler_settings']['target_bundles']);
+            // Since this is a vocabulary we need to check if each term exists in Drupal and then create it if necessary and set the right target_id
+            if (!is_array($value)) {
+              $term_names = [];
+              $term_names[] = $value;
+            } else {
+              $term_names = $value;
+            }
+            foreach ($term_names AS $term_name) {
+              // Check to see if this term already exists in this vocabulary
+              $query = \Drupal::entityQuery('taxonomy_term');
+              $query->condition('vid', $vocabulary);
+              $query->condition('name', trim($term_name));
+              $tids = $query->execute();
+              if (count($tids) == 0) {
+                $term = \Drupal\taxonomy\Entity\Term::create([
+                  'vid' => $vocabulary,
+                  'name' => trim($term_name),
+                ]);
+                $term->save();
+                $tid = $term->id();
+              } else {
+                $tid = key($tids);
+              }
+              $entity->set($machine_field, $tid);
+            }
+          } else {
+            $entity->set($machine_field, $value);
+          }
+        }
+      }
+    }
+  }
+}
+
+/*
+ * Exract IPTC fields from an image.
+ */
+function dam_iptc_extract_iptc_from_image($file_absolute_path) {
+  $itpc_field_values = [];
+  $file_contents = file_get_contents($file_absolute_path);
+  getimagesize($file_absolute_path, $info);
+  if (isset($info['APP13'])) {
+    $iptc_class = new IPTC();
+    $iptc_extracted_values = iptcparse($info['APP13']);
+    $iptc_fields = $iptc_class->dam_iptc_full_field_list();
+    foreach ($iptc_fields AS $label => $key) {
+      if (isset($iptc_extracted_values[$key]) && count($iptc_extracted_values[$key]) > 1) {
+        foreach ($iptc_extracted_values[$key] AS $count => $value) {
+          $itpc_field_values[$label][] = trim($value);
+        }
+      } else {
+        $itpc_field_values[$label] = (isset($iptc_extracted_values[$key][0]) ? trim($iptc_extracted_values[$key][0]) : '');
+      }
+    }
+  }
+  return $itpc_field_values;
+}
+
+/*
+ * Takes a media entity with an image field and extracts the full filepath to the image.
+ */
+function dam_iptc_get_image_filepath_from_enitity($entity) {
+  // Load up the image
+  $image = $entity->get('image');
+  $file = $image->referencedEntities();
+  $uri = $file[0]->getFileUri();
+  $file_absolute_path = Drupal::getContainer()
+    ->get('file_system')
+    ->realpath($uri);
+  $mime_content_type = mime_content_type($file_absolute_path);
+  if ($mime_content_type == 'image/png') {
+    drupal_set_message("IPTC data is only available for JPEG and TIFF files.");
+    return FALSE;
+  }
+  return $file_absolute_path;
+}
+
+/*
+ * Embed IPTC fields into entity.
+ */
+function dam_iptc_embed_iptc_fields_into_entity($entity) {
+  // First etract the full path to the image and validate it is JPEG or TIFF.
+  if ($file_absolute_path = dam_iptc_get_image_filepath_from_enitity($entity)) {
+    $iptc_class = new IPTC();
+    $iptc_fields = $iptc_class->dam_iptc_full_field_list();
+    $count = 1;
+    $iptc = [];
+    $bundle_fields = \Drupal::getContainer()->get('entity_field.manager')->getFieldDefinitions('media', 'image');
+    foreach ($iptc_fields AS $label => $key) {
+      $label_machine = str_replace(' ', '_', $label);
+      $machine_field = \Drupal::configFactory()
+        ->getEditable('dam_iptc.settings')
+        ->get($label_machine);
+      if ($machine_field <> '') {
+        $field_definition = $bundle_fields[$machine_field];
+        $settings = $field_definition->getSettings();
+        $values = $entity->get($machine_field)->getValue();
+        foreach ($values AS $value) {
+          if (isset($settings['target_type']) && $settings['target_type'] == 'taxonomy_term') {
+            // If this field is a taxonomy term then load the term names
+            $term = \Drupal\taxonomy\Entity\Term::load($value['target_id']);
+            $final_value = $term->getName();
+          } else {
+            $final_value = $value['value'];
+          }
+          $iptc[$iptc_fields[$label]][] = $final_value;
+        }
+      }
+    }
+    if (count($iptc) > 0) {
+      $iptc_class->embed_iptc_fields_into_image($file_absolute_path, $iptc);
+    }
+  }
+}
+
+/**
+ * implementation of hook_entity_presave (drupal 8)
+ *
+ * Calculate the value for each IPTC field so they can be stored correctly.
+ *
+ * @param $entity EntityInterface entity to be saved.
+ *
+ */
+function dam_iptc_entity_presave($entity) {
+  if (Drupal::moduleHandler()->moduleExists("media_entity") && $entity instanceof \Drupal\media_entity\MediaInterface) {
+    if ($entity->bundle() == 'image') {
+      $config = Drupal::configFactory()->get('dam_iptc.settings');
+      $shouldUpdateMetadata = $config->get('gather_iptc');
+      if (!isset($shouldUpdateMetadata)) {
+        $shouldUpdateMetadata = FALSE;
+      }
+      $embed_iptc_data = ($shouldUpdateMetadata && isset($_REQUEST['dam_iptc_embed']) ? $_REQUEST['dam_iptc_embed'] : FALSE);
+      $inserting = !isset($entity->original);
+      if (!$inserting) {
+        $old_image = $entity->original->get('image')->getValue();
+        $new_image = $entity->get('image')->getValue();
+        if ($new_image[0]['target_id'] == $old_image[0]['target_id']) {
+          $shouldUpdateMetadata = FALSE;
+        }
+      }
+      if ($embed_iptc_data) {
+        // Don't extract IPTC data if goal is to embed data from Drupal form into the image
+        $shouldUpdateMetadata = FALSE;
+      }
+      if ($inserting || $shouldUpdateMetadata) {
+        dam_iptc_extract_iptc_into_entity($entity);
+      } elseif ($embed_iptc_data) {
+        dam_iptc_embed_iptc_fields_into_entity($entity);
+      }
+    }
+  }
+}
