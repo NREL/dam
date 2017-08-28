@@ -1,0 +1,8 @@
+dam_iptc.iptc_tab:
+  path: '/media/{media}/iptc'
+  defaults:
+    _controller: '\Drupal\dam_iptc\Controller\IPTCNodeController::show_extracted_values'
+    _title: 'IPTC'
+  requirements:
+    _permission: 'access iptc debug info'
+    _entity_access: 'media.view'

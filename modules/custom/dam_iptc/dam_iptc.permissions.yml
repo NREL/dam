@@ -1,0 +1,8 @@
+access iptc debug info:
+  title: 'View the IPTC tab on image media'
+  description: 'View IPTC data for images.'
+  restrict access: TRUE
+embed iptc data info images:
+  title: 'Embed IPTC data from the media entity into images'
+  description: 'Embed IPTC data from the media entity into images.'
+  restrict access: TRUE

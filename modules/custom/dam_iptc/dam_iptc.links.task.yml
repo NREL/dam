@@ -1,0 +1,4 @@
+dam_iptc.iptc_tab:
+ route_name: dam_iptc.iptc_tab
+ base_route: entity.media.canonical
+ title: 'IPTC'
