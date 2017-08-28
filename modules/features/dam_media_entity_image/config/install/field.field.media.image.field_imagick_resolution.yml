@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_imagick_resolution
+    - media_entity.bundle.image
+id: media.image.field_imagick_resolution
+field_name: field_imagick_resolution
+entity_type: media
+bundle: image
+label: 'MEI Imagick Resolution'
+description: "Leverage the Imagick PECL extension to add some fields:\r\n* Image format\r\n* Resolution\r\n* Colorspace"
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

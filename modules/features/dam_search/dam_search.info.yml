@@ -4,7 +4,7 @@ type: module
 core: 8.x
 dependencies:
   - block
-  - communications_media_entity_image
+  - dam_media_entity_image
   - facets
   - media_entity
   - node

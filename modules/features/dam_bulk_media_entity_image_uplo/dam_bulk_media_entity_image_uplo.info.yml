@@ -4,7 +4,7 @@ type: module
 core: 8.x
 package: Custom
 dependencies:
-  - communications_media_entity_image
+  - dam_media_entity_image
   - dropzonejs_eb_widget
   - entity_browser
   - field

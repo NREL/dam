@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_mei_iptc_orig_trans_ref
+    - media_entity.bundle.image
+id: media.image.field_mei_iptc_orig_trans_ref
+field_name: field_mei_iptc_orig_trans_ref
+entity_type: media
+bundle: image
+label: 'MEI IPTC Orig Trans ref'
+description: '(2#103)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_provided_focal_length
+    - media_entity.bundle.image
+id: media.image.field_provided_focal_length
+field_name: field_provided_focal_length
+entity_type: media
+bundle: image
+label: 'MEI Provided Focal length'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

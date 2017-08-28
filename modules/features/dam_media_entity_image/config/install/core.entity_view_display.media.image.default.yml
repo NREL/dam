@@ -1,0 +1,513 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.image.field_copyright_url
+    - field.field.media.image.field_height
+    - field.field.media.image.field_image_creation_datetime_te
+    - field.field.media.image.field_imagick_colorspace
+    - field.field.media.image.field_imagick_format
+    - field.field.media.image.field_imagick_resolution
+    - field.field.media.image.field_iso
+    - field.field.media.image.field_media_in_library
+    - field.field.media.image.field_mei_event
+    - field.field.media.image.field_mei_iptc_category
+    - field.field.media.image.field_mei_iptc_charset
+    - field.field.media.image.field_mei_iptc_city
+    - field.field.media.image.field_mei_iptc_contact
+    - field.field.media.image.field_mei_iptc_copyright
+    - field.field.media.image.field_mei_iptc_creator_job_title
+    - field.field.media.image.field_mei_iptc_creator_phtgrphr
+    - field.field.media.image.field_mei_iptc_credit
+    - field.field.media.image.field_mei_iptc_desc_caption
+    - field.field.media.image.field_mei_iptc_desc_writers
+    - field.field.media.image.field_mei_iptc_headline
+    - field.field.media.image.field_mei_iptc_keywords
+    - field.field.media.image.field_mei_iptc_orig_trans_ref
+    - field.field.media.image.field_mei_iptc_source
+    - field.field.media.image.field_mei_iptc_spec_instructions
+    - field.field.media.image.field_mei_iptc_subcategories
+    - field.field.media.image.field_mei_iptc_title_object_name
+    - field.field.media.image.field_mei_provided_camera_model
+    - field.field.media.image.field_mei_rights_usage_terms
+    - field.field.media.image.field_mei_time_and_date
+    - field.field.media.image.field_mime
+    - field.field.media.image.field_provided_aperture_value
+    - field.field.media.image.field_provided_exposure_time
+    - field.field.media.image.field_provided_focal_length
+    - field.field.media.image.field_width
+    - field.field.media.image.field_xmp_orientation
+    - field.field.media.image.image
+    - media_entity.bundle.image
+  module:
+    - address
+    - datetime
+    - field_group
+    - image
+    - link
+third_party_settings:
+  field_group:
+    group_image_exif:
+      children:
+        - field_image_creation_datetime_te
+        - field_mei_provided_camera_model
+        - field_iso
+        - field_provided_exposure_time
+        - field_provided_aperture_value
+        - field_provided_focal_length
+      parent_name: group_metadata
+      weight: 25
+      format_type: html_element
+      format_settings:
+        label: Exif
+        element: div
+        show_label: true
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+        id: ''
+        classes: ''
+      label: Exif
+    group_imagick:
+      children:
+        - field_imagick_format
+        - field_imagick_resolution
+        - field_imagick_colorspace
+      parent_name: group_metadata
+      weight: 26
+      format_type: html_element
+      format_settings:
+        label: Imagick
+        element: div
+        show_label: true
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+        id: ''
+        classes: ''
+      label: Imagick
+    group_metadata:
+      children:
+        - group_mei_image_content
+        - group_mei_image_rights
+        - group_mei_event_and_location
+        - group_mei_status
+        - group_mei_provided
+        - group_image_exif
+        - group_imagick
+        - group_xmp
+      parent_name: ''
+      weight: 5
+      format_type: html_element
+      format_settings:
+        element: div
+        show_label: false
+        label_element: h3
+        effect: none
+        speed: fast
+        attributes: ''
+        classes: ''
+        id: ''
+      label: Metadata
+    group_mei_provided:
+      children:
+        - field_mime
+        - field_height
+        - field_width
+      parent_name: group_metadata
+      weight: 24
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: ''
+        element: div
+        show_label: true
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+      label: 'Provided Fields'
+    group_xmp:
+      children:
+        - field_xmp_orientation
+      parent_name: group_metadata
+      weight: 27
+      format_type: html_element
+      format_settings:
+        label: XMP
+        element: div
+        show_label: true
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+        id: ''
+        classes: ''
+      label: XMP
+    group_mei_image_content:
+      children:
+        - field_mei_iptc_desc_caption
+        - field_mei_iptc_desc_writers
+        - field_mei_iptc_headline
+        - field_mei_iptc_keywords
+        - field_mei_persons_shown
+        - field_featured_org_name
+        - field_featured_org_code
+        - field_mei_iptc_scene
+      parent_name: group_metadata
+      weight: 20
+      format_type: html_element
+      format_settings:
+        element: div
+        show_label: false
+        label_element: h3
+        effect: none
+        speed: fast
+        attributes: ''
+        classes: ''
+        id: ''
+      label: 'Image Content'
+    group_mei_image_rights:
+      children:
+        - field_mei_iptc_creator_phtgrphr
+        - field_mei_iptc_creator_job_title
+        - field_mei_iptc_copyright
+        - field_mei_iptc_credit
+        - field_mei_iptc_source
+        - field_copyright_url
+        - field_mei_rights_usage_terms
+      parent_name: group_metadata
+      weight: 21
+      format_type: html_element
+      format_settings:
+        element: div
+        show_label: false
+        label_element: h3
+        effect: none
+        speed: fast
+        attributes: ''
+        classes: ''
+        id: ''
+      label: 'Image Rights'
+    group_mei_event_and_location:
+      children:
+        - field_mei_event
+        - field_mei_iptc_city
+      parent_name: group_metadata
+      weight: 22
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: ''
+        element: div
+        show_label: true
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+      label: 'Event and Location'
+    group_mei_status:
+      children:
+        - field_mei_iptc_title_object_name
+        - field_mei_iptc_spec_instructions
+      parent_name: group_metadata
+      weight: 23
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+      label: Status
+id: media.image.default
+targetEntityType: media
+bundle: image
+mode: default
+content:
+  field_copyright_url:
+    weight: 50
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_height:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_image_creation_datetime_te:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_imagick_colorspace:
+    weight: 23
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_imagick_format:
+    weight: 21
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_imagick_resolution:
+    weight: 22
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_iso:
+    weight: 6
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_mei_event:
+    weight: 52
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_mei_iptc_category:
+    weight: 59
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_mei_iptc_charset:
+    weight: 58
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_mei_iptc_city:
+    weight: 53
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: address_default
+    region: content
+  field_mei_iptc_contact:
+    weight: 62
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_mei_iptc_copyright:
+    weight: 47
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_mei_iptc_creator_job_title:
+    weight: 46
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_mei_iptc_creator_phtgrphr:
+    weight: 45
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_mei_iptc_credit:
+    weight: 48
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_mei_iptc_desc_caption:
+    weight: 37
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_mei_iptc_desc_writers:
+    weight: 38
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_mei_iptc_headline:
+    weight: 39
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_mei_iptc_keywords:
+    weight: 40
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_mei_iptc_orig_trans_ref:
+    weight: 61
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_mei_iptc_source:
+    weight: 49
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_mei_iptc_spec_instructions:
+    weight: 57
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_mei_iptc_subcategories:
+    weight: 60
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_mei_iptc_title_object_name:
+    weight: 56
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_mei_provided_camera_model:
+    weight: 5
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_mei_rights_usage_terms:
+    weight: 51
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_mei_time_and_date:
+    weight: 54
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_mime:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_provided_aperture_value:
+    weight: 8
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_provided_exposure_time:
+    weight: 7
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_provided_focal_length:
+    weight: 9
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_width:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_xmp_orientation:
+    weight: 26
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  image:
+    type: image
+    weight: 0
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  field_media_in_library: true
+  name: true
+  thumbnail: true
+  uid: true

@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_mei_iptc_category
+    - media_entity.bundle.image
+id: media.image.field_mei_iptc_category
+field_name: field_mei_iptc_category
+entity_type: media
+bundle: image
+label: 'MEI IPTC Category'
+description: '(2#015)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

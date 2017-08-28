@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Media Contributor'
+vid: media_contributor
+description: Creator/Photographer/Credit
+hierarchy: 0
+weight: 0

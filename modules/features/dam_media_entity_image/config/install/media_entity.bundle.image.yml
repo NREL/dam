@@ -1,0 +1,53 @@
+langcode: und
+status: true
+dependencies:
+  module:
+    - media_entity_image
+id: image
+label: Image
+description: 'Locally hosted images.'
+type: image
+queue_thumbnail_downloads: false
+new_revision: false
+type_configuration:
+  source_field: image
+  gather_exif: true
+  use_imagick: true
+field_map:
+  mime: field_mime
+  width: field_width
+  height: field_height
+  model: field_mei_provided_camera_model
+  created: field_image_creation_datetime_te
+  iso: field_iso
+  exposure: field_provided_exposure_time
+  aperture: field_provided_aperture_value
+  focal_length: field_provided_focal_length
+  format: field_imagick_format
+  colorspace: field_imagick_colorspace
+  resolution: field_imagick_resolution
+  Character_Set: field_mei_iptc_charset
+  Document_Title: field_mei_iptc_title_object_name
+  Category: field_mei_iptc_category
+  Subcategories: field_mei_iptc_subcategories
+  Keywords: ''
+  Special_Instructions: field_mei_iptc_spec_instructions
+  Creation_Date: ''
+  Creation_Time: ''
+  Digital_Creation_Date: ''
+  Digital_Creation_Time: ''
+  Author_By_line: ''
+  Author_Title: ''
+  City: ''
+  Sublocation: ''
+  State: ''
+  Country_Code: ''
+  Country: ''
+  Original_Transmission_reference: field_mei_iptc_orig_trans_ref
+  Headline: field_mei_iptc_headline
+  Source: ''
+  Photo_Source: ''
+  Copyright: field_mei_iptc_copyright
+  Contact: field_mei_iptc_contact
+  Caption: field_mei_iptc_desc_caption
+  Caption_Writer: field_mei_iptc_desc_writers

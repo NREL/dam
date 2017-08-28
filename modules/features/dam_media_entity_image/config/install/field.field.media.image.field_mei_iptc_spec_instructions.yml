@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_mei_iptc_spec_instructions
+    - media_entity.bundle.image
+id: media.image.field_mei_iptc_spec_instructions
+field_name: field_mei_iptc_spec_instructions
+entity_type: media
+bundle: image
+label: 'MEI IPTC Special Instructions'
+description: 'IPTC:SpecialInstructions'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

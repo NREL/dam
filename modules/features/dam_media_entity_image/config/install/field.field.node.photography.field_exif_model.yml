@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_exif_model
+    - node.type.photography
+  module:
+    - text
+id: node.photography.field_exif_model
+field_name: field_exif_model
+entity_type: node
+bundle: photography
+label: Model
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

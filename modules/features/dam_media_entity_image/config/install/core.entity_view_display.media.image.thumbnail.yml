@@ -1,0 +1,89 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.thumbnail
+    - field.field.media.image.field_copyright_url
+    - field.field.media.image.field_height
+    - field.field.media.image.field_image_creation_datetime_te
+    - field.field.media.image.field_imagick_colorspace
+    - field.field.media.image.field_imagick_format
+    - field.field.media.image.field_imagick_resolution
+    - field.field.media.image.field_iso
+    - field.field.media.image.field_media_in_library
+    - field.field.media.image.field_mei_event
+    - field.field.media.image.field_mei_iptc_city
+    - field.field.media.image.field_mei_iptc_copyright
+    - field.field.media.image.field_mei_iptc_creator_job_title
+    - field.field.media.image.field_mei_iptc_creator_phtgrphr
+    - field.field.media.image.field_mei_iptc_credit
+    - field.field.media.image.field_mei_iptc_desc_caption
+    - field.field.media.image.field_mei_iptc_desc_writers
+    - field.field.media.image.field_mei_iptc_headline
+    - field.field.media.image.field_mei_iptc_keywords
+    - field.field.media.image.field_mei_iptc_source
+    - field.field.media.image.field_mei_iptc_spec_instructions
+    - field.field.media.image.field_mei_iptc_title_object_name
+    - field.field.media.image.field_mei_provided_camera_model
+    - field.field.media.image.field_mei_rights_usage_terms
+    - field.field.media.image.field_mei_time_and_date
+    - field.field.media.image.field_mime
+    - field.field.media.image.field_provided_aperture_value
+    - field.field.media.image.field_provided_exposure_time
+    - field.field.media.image.field_provided_focal_length
+    - field.field.media.image.field_width
+    - field.field.media.image.field_xmp_orientation
+    - field.field.media.image.image
+    - image.style.medium
+    - media_entity.bundle.image
+  module:
+    - image
+id: media.image.thumbnail
+targetEntityType: media
+bundle: image
+mode: thumbnail
+content:
+  image:
+    type: image
+    weight: 0
+    label: hidden
+    settings:
+      image_style: medium
+      image_link: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  field_copyright_url: true
+  field_height: true
+  field_image_creation_datetime_te: true
+  field_imagick_colorspace: true
+  field_imagick_format: true
+  field_imagick_resolution: true
+  field_iso: true
+  field_media_in_library: true
+  field_mei_event: true
+  field_mei_iptc_city: true
+  field_mei_iptc_copyright: true
+  field_mei_iptc_creator_job_title: true
+  field_mei_iptc_creator_phtgrphr: true
+  field_mei_iptc_credit: true
+  field_mei_iptc_desc_caption: true
+  field_mei_iptc_desc_writers: true
+  field_mei_iptc_headline: true
+  field_mei_iptc_keywords: true
+  field_mei_iptc_source: true
+  field_mei_iptc_spec_instructions: true
+  field_mei_iptc_title_object_name: true
+  field_mei_provided_camera_model: true
+  field_mei_rights_usage_terms: true
+  field_mei_time_and_date: true
+  field_mime: true
+  field_provided_aperture_value: true
+  field_provided_exposure_time: true
+  field_provided_focal_length: true
+  field_width: true
+  field_xmp_orientation: true
+  name: true
+  thumbnail: true
+  uid: true

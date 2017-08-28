@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_mei_iptc_keywords
+    - media_entity.bundle.image
+    - taxonomy.vocabulary.structured_keywords
+id: media.image.field_mei_iptc_keywords
+field_name: field_mei_iptc_keywords
+entity_type: media
+bundle: image
+label: 'MEI IPTC Keywords'
+description: 'IPTC:Keywords'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      structured_keywords: structured_keywords
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

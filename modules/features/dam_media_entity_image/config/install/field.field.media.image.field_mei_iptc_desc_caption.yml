@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_mei_iptc_desc_caption
+    - media_entity.bundle.image
+id: media.image.field_mei_iptc_desc_caption
+field_name: field_mei_iptc_desc_caption
+entity_type: media
+bundle: image
+label: 'MEI IPTC Description/Caption'
+description: 'IPTC:Caption-Abstract (2#120)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

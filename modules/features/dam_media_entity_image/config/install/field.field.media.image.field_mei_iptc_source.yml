@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_mei_iptc_source
+    - media_entity.bundle.image
+    - taxonomy.vocabulary.organization
+id: media.image.field_mei_iptc_source
+field_name: field_mei_iptc_source
+entity_type: media
+bundle: image
+label: 'MEI IPTC Source'
+description: 'IPTC:Source'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      organization: organization
+    sort:
+      field: _none
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

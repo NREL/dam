@@ -6,7 +6,7 @@ package: DAM
 dependencies:
   - blazy_ui
   - block
-  - communications_media_entity_image
+  - dam_media_entity_image
   - image
   - media_entity
   - slick_extras

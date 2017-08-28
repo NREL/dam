@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_mei_provided_camera_model
+    - media_entity.bundle.image
+id: media.image.field_mei_provided_camera_model
+field_name: field_mei_provided_camera_model
+entity_type: media
+bundle: image
+label: 'MEI Provided Camera model'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

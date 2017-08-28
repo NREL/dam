@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Structured Keywords'
+vid: structured_keywords
+description: 'Hierarchical taxonomy of keyword metadata.'
+hierarchy: 0
+weight: 0

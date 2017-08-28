@@ -1,0 +1,27 @@
+name: media_entity_image
+description: 'Lightning media bundle configuration export.'
+type: module
+core: 8.x
+dependencies:
+  - address
+  - datetime
+  - entity_browser
+  - exif
+  - field
+  - field_group
+  - file
+  - image
+  - lightning_media
+  - link
+  - media_entity
+  - media_entity_image
+  - node
+  - path
+  - taxonomy
+  - text
+  - user
+  - views
+  - views_infinite_scroll
+  - workbench_moderation
+version: 8.x-1.0
+package: Communications

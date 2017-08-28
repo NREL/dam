@@ -1,0 +1,34 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_mei_iptc_city
+    - media_entity.bundle.image
+  module:
+    - address
+id: media.image.field_mei_iptc_city
+field_name: field_mei_iptc_city
+entity_type: media
+bundle: image
+label: 'MEI IPTC City, State/Province, Country'
+description: 'IPTC:City, IPTC:Country-PrimaryLocationName yes'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  available_countries: {  }
+  fields:
+    administrativeArea: administrativeArea
+    locality: locality
+    dependentLocality: dependentLocality
+    sortingCode: sortingCode
+    postalCode: '0'
+    addressLine1: '0'
+    addressLine2: '0'
+    organization: '0'
+    givenName: '0'
+    additionalName: '0'
+    familyName: '0'
+  langcode_override: ''
+field_type: address

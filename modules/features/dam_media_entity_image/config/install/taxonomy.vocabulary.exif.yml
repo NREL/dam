@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: exif
+vid: exif
+description: 'A specific vocabulary must be set in the exif plugin configuration page.'
+hierarchy: 0
+weight: 0

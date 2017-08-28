@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: Organization
+vid: organization
+description: 'Organization affiliated with media.'
+hierarchy: 0
+weight: 0

@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_mei_iptc_credit
+    - media_entity.bundle.image
+    - taxonomy.vocabulary.media_contributor
+id: media.image.field_mei_iptc_credit
+field_name: field_mei_iptc_credit
+entity_type: media
+bundle: image
+label: 'MEI IPTC Credit'
+description: 'IPTC:Credit'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      media_contributor: media_contributor
+    sort:
+      field: _none
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference
