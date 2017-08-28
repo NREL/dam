@@ -20,7 +20,6 @@ function dam_install() {
   // Can add code in here to make nodes, terms, etc.
 
   $modules = [
-    'communications_media_entity_image',
     'dam_content',
     // 'dam_search',
     //    'dam_elastic_search',
