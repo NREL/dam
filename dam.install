@@ -26,8 +26,7 @@ function dam_install() {
     //    'dam_elastic_search',
     'dam_slider',
     'dam_bulk_media_entity_image_uplo',
-    'dam_iptc',
-    'dam_bulk_media_entity_image_uplo'
+    'dam_iptc'
     // 'webprofiler'
   ];
 
