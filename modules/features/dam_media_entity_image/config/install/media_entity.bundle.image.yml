@@ -32,17 +32,17 @@ field_map:
   Subcategories: field_mei_iptc_subcategories
   Keywords: field_mei_iptc_keywords
   Special_Instructions: field_mei_iptc_spec_instructions
-  Creation_Date: ''
-  Creation_Time: ''
-  Digital_Creation_Date: ''
-  Digital_Creation_Time: ''
+  Creation_Date: field_mei_iptc_creation_date
+  Creation_Time: field_mei_iptc_creation_time
+  Digital_Creation_Date: field_mei_iptc_dig_creation_date
+  Digital_Creation_Time: field_mei_iptc_dig_creation_time
   Author_By_line: ''
-  Author_Title: ''
-  City: ''
-  Sublocation: ''
-  State: ''
-  Country_Code: ''
-  Country: ''
+  Author_Title: field_mei_iptc_creator_job_title
+  City: field_mei_iptc_city
+  Sublocation: field_mei_iptc_sublocation
+  State: field_mei_iptc_state
+  Country_Code: field_mei_iptc_country_code
+  Country: field_mei_iptc_country
   Original_Transmission_reference: field_mei_iptc_orig_trans_ref
   Headline: field_mei_iptc_headline
   Source: ''

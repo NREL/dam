@@ -14,20 +14,27 @@ dependencies:
     - field.field.media.image.field_mei_event
     - field.field.media.image.field_mei_iptc_category
     - field.field.media.image.field_mei_iptc_charset
-    - field.field.media.image.field_mei_iptc_city
     - field.field.media.image.field_mei_iptc_contact
     - field.field.media.image.field_mei_iptc_copyright
+    - field.field.media.image.field_mei_iptc_country
+    - field.field.media.image.field_mei_iptc_country_code
+    - field.field.media.image.field_mei_iptc_creation_date
+    - field.field.media.image.field_mei_iptc_creation_time
     - field.field.media.image.field_mei_iptc_creator_job_title
     - field.field.media.image.field_mei_iptc_creator_phtgrphr
     - field.field.media.image.field_mei_iptc_credit
     - field.field.media.image.field_mei_iptc_desc_caption
     - field.field.media.image.field_mei_iptc_desc_writers
+    - field.field.media.image.field_mei_iptc_dig_creation_date
+    - field.field.media.image.field_mei_iptc_dig_creation_time
     - field.field.media.image.field_mei_iptc_headline
     - field.field.media.image.field_mei_iptc_keywords
     - field.field.media.image.field_mei_iptc_orig_trans_ref
     - field.field.media.image.field_mei_iptc_source
     - field.field.media.image.field_mei_iptc_spec_instructions
+    - field.field.media.image.field_mei_iptc_state
     - field.field.media.image.field_mei_iptc_subcategories
+    - field.field.media.image.field_mei_iptc_sublocation
     - field.field.media.image.field_mei_iptc_title_object_name
     - field.field.media.image.field_mei_provided_camera_model
     - field.field.media.image.field_mei_rights_usage_terms
@@ -70,20 +77,27 @@ hidden:
   field_mei_event: true
   field_mei_iptc_category: true
   field_mei_iptc_charset: true
-  field_mei_iptc_city: true
   field_mei_iptc_contact: true
   field_mei_iptc_copyright: true
+  field_mei_iptc_country: true
+  field_mei_iptc_country_code: true
+  field_mei_iptc_creation_date: true
+  field_mei_iptc_creation_time: true
   field_mei_iptc_creator_job_title: true
   field_mei_iptc_creator_phtgrphr: true
   field_mei_iptc_credit: true
   field_mei_iptc_desc_caption: true
   field_mei_iptc_desc_writers: true
+  field_mei_iptc_dig_creation_date: true
+  field_mei_iptc_dig_creation_time: true
   field_mei_iptc_headline: true
   field_mei_iptc_keywords: true
   field_mei_iptc_orig_trans_ref: true
   field_mei_iptc_source: true
   field_mei_iptc_spec_instructions: true
+  field_mei_iptc_state: true
   field_mei_iptc_subcategories: true
+  field_mei_iptc_sublocation: true
   field_mei_iptc_title_object_name: true
   field_mei_provided_camera_model: true
   field_mei_rights_usage_terms: true

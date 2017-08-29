@@ -3,8 +3,8 @@ status: true
 dependencies:
   module:
     - media_entity
-id: media.field_mei_iptc_city
-field_name: field_mei_iptc_city
+id: media.field_mei_iptc_country
+field_name: field_mei_iptc_country
 entity_type: media
 type: string
 settings:

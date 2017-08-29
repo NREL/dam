@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.media.field_mei_iptc_city
+    - field.storage.media.field_mei_iptc_country
     - media_entity.bundle.image
-id: media.image.field_mei_iptc_city
-field_name: field_mei_iptc_city
+id: media.image.field_mei_iptc_country
+field_name: field_mei_iptc_country
 entity_type: media
 bundle: image
-label: 'MEI IPTC City'
-description: '(2#090)'
+label: 'MEI IPTC Country'
+description: '(2#101)'
 required: false
 translatable: false
 default_value: {  }

@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.media.field_mei_iptc_city
+    - field.storage.media.field_mei_iptc_dig_creation_time
     - media_entity.bundle.image
-id: media.image.field_mei_iptc_city
-field_name: field_mei_iptc_city
+id: media.image.field_mei_iptc_dig_creation_time
+field_name: field_mei_iptc_dig_creation_time
 entity_type: media
 bundle: image
-label: 'MEI IPTC City'
-description: '(2#090)'
+label: 'MEI IPTC Dig Creation Time'
+description: '(2#063)'
 required: false
 translatable: false
 default_value: {  }

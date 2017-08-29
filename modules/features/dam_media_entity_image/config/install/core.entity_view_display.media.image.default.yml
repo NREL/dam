@@ -16,17 +16,25 @@ dependencies:
     - field.field.media.image.field_mei_iptc_city
     - field.field.media.image.field_mei_iptc_contact
     - field.field.media.image.field_mei_iptc_copyright
+    - field.field.media.image.field_mei_iptc_country
+    - field.field.media.image.field_mei_iptc_country_code
+    - field.field.media.image.field_mei_iptc_creation_date
+    - field.field.media.image.field_mei_iptc_creation_time
     - field.field.media.image.field_mei_iptc_creator_job_title
     - field.field.media.image.field_mei_iptc_creator_phtgrphr
     - field.field.media.image.field_mei_iptc_credit
     - field.field.media.image.field_mei_iptc_desc_caption
     - field.field.media.image.field_mei_iptc_desc_writers
+    - field.field.media.image.field_mei_iptc_dig_creation_date
+    - field.field.media.image.field_mei_iptc_dig_creation_time
     - field.field.media.image.field_mei_iptc_headline
     - field.field.media.image.field_mei_iptc_keywords
     - field.field.media.image.field_mei_iptc_orig_trans_ref
     - field.field.media.image.field_mei_iptc_source
     - field.field.media.image.field_mei_iptc_spec_instructions
+    - field.field.media.image.field_mei_iptc_state
     - field.field.media.image.field_mei_iptc_subcategories
+    - field.field.media.image.field_mei_iptc_sublocation
     - field.field.media.image.field_mei_iptc_title_object_name
     - field.field.media.image.field_mei_provided_camera_model
     - field.field.media.image.field_mei_rights_usage_terms
@@ -40,7 +48,6 @@ dependencies:
     - field.field.media.image.image
     - media_entity.bundle.image
   module:
-    - address
     - datetime
     - field_group
     - image
@@ -156,14 +163,15 @@ third_party_settings:
       weight: 20
       format_type: html_element
       format_settings:
+        label: 'Image Content'
         element: div
-        show_label: false
+        show_label: true
         label_element: h3
+        attributes: ''
         effect: none
         speed: fast
-        attributes: ''
-        classes: ''
         id: ''
+        classes: ''
       label: 'Image Content'
     group_mei_image_rights:
       children:
@@ -190,7 +198,15 @@ third_party_settings:
     group_mei_event_and_location:
       children:
         - field_mei_event
+        - field_mei_iptc_creation_date
+        - field_mei_iptc_creation_time
+        - field_mei_iptc_dig_creation_date
+        - field_mei_iptc_dig_creation_time
         - field_mei_iptc_city
+        - field_mei_iptc_sublocation
+        - field_mei_iptc_state
+        - field_mei_iptc_country
+        - field_mei_iptc_country_code
       parent_name: group_metadata
       weight: 22
       format_type: html_element
@@ -211,11 +227,17 @@ third_party_settings:
         - field_mei_iptc_orig_trans_ref
       parent_name: group_metadata
       weight: 23
-      format_type: fieldset
+      format_type: html_element
       format_settings:
+        label: Status
+        element: div
+        show_label: true
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
         id: ''
         classes: ''
-        description: ''
       label: Status
 id: media.image.default
 targetEntityType: media
@@ -291,11 +313,12 @@ content:
     type: string
     region: content
   field_mei_iptc_city:
-    weight: 53
+    weight: 57
     label: above
-    settings: {  }
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
-    type: address_default
+    type: string
     region: content
   field_mei_iptc_copyright:
     weight: 47
@@ -303,6 +326,38 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: basic_string
+    region: content
+  field_mei_iptc_country:
+    weight: 60
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_mei_iptc_country_code:
+    weight: 61
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_mei_iptc_creation_date:
+    weight: 53
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_mei_iptc_creation_time:
+    weight: 54
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
     region: content
   field_mei_iptc_creator_job_title:
     weight: 46
@@ -337,6 +392,22 @@ content:
     region: content
   field_mei_iptc_desc_writers:
     weight: 38
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_mei_iptc_dig_creation_date:
+    weight: 55
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_mei_iptc_dig_creation_time:
+    weight: 56
     label: above
     settings:
       link_to_entity: false
@@ -380,6 +451,22 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: basic_string
+    region: content
+  field_mei_iptc_state:
+    weight: 59
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_mei_iptc_sublocation:
+    weight: 58
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
     region: content
   field_mei_iptc_title_object_name:
     weight: 56
