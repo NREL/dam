@@ -13,7 +13,6 @@ type_configuration:
   source_field: image
   gather_exif: true
   use_imagick: true
-  gather_iptc: true
 field_map:
   mime: field_mime
   width: field_width

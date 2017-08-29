@@ -55,10 +55,6 @@ third_party_settings:
         - field_mei_iptc_desc_writers
         - field_mei_iptc_keywords
         - field_mei_iptc_headline
-        - field_mei_persons_shown
-        - field_featured_org_name
-        - field_featured_org_code
-        - field_mei_iptc_scene
       parent_name: group_mei_metadata
       weight: 6
       format_type: fieldset
@@ -120,6 +116,7 @@ third_party_settings:
       children:
         - field_mei_iptc_title_object_name
         - field_mei_iptc_spec_instructions
+        - field_mei_iptc_orig_trans_ref
       parent_name: group_mei_metadata
       weight: 9
       format_type: html_element
@@ -161,36 +158,12 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_mei_iptc_category:
-    weight: 43
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_mei_iptc_charset:
-    weight: 42
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_mei_iptc_city:
     weight: 38
     settings:
       default_country: null
     third_party_settings: {  }
     type: address_default
-    region: content
-  field_mei_iptc_contact:
-    weight: 46
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
     region: content
   field_mei_iptc_copyright:
     weight: 31
@@ -261,7 +234,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_mei_iptc_orig_trans_ref:
-    weight: 45
+    weight: 42
     settings:
       size: 60
       placeholder: ''
@@ -284,14 +257,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
-    region: content
-  field_mei_iptc_subcategories:
-    weight: 44
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
     region: content
   field_mei_iptc_title_object_name:
     weight: 40
@@ -348,6 +313,10 @@ hidden:
   field_imagick_resolution: true
   field_iso: true
   field_media_in_library: true
+  field_mei_iptc_category: true
+  field_mei_iptc_charset: true
+  field_mei_iptc_contact: true
+  field_mei_iptc_subcategories: true
   field_mei_provided_camera_model: true
   field_mime: true
   field_provided_aperture_value: true

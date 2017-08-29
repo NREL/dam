@@ -99,7 +99,7 @@ third_party_settings:
         - group_imagick
         - group_xmp
       parent_name: ''
-      weight: 5
+      weight: 1
       format_type: html_element
       format_settings:
         element: div
@@ -152,10 +152,6 @@ third_party_settings:
         - field_mei_iptc_desc_writers
         - field_mei_iptc_headline
         - field_mei_iptc_keywords
-        - field_mei_persons_shown
-        - field_featured_org_name
-        - field_featured_org_code
-        - field_mei_iptc_scene
       parent_name: group_metadata
       weight: 20
       format_type: html_element
@@ -212,6 +208,7 @@ third_party_settings:
       children:
         - field_mei_iptc_title_object_name
         - field_mei_iptc_spec_instructions
+        - field_mei_iptc_orig_trans_ref
       parent_name: group_metadata
       weight: 23
       format_type: fieldset
@@ -293,36 +290,12 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  field_mei_iptc_category:
-    weight: 59
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_mei_iptc_charset:
-    weight: 58
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
   field_mei_iptc_city:
     weight: 53
     label: above
     settings: {  }
     third_party_settings: {  }
     type: address_default
-    region: content
-  field_mei_iptc_contact:
-    weight: 62
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
     region: content
   field_mei_iptc_copyright:
     weight: 47
@@ -386,7 +359,7 @@ content:
     type: entity_reference_label
     region: content
   field_mei_iptc_orig_trans_ref:
-    weight: 61
+    weight: 58
     label: above
     settings:
       link_to_entity: false
@@ -407,14 +380,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: basic_string
-    region: content
-  field_mei_iptc_subcategories:
-    weight: 60
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
     region: content
   field_mei_iptc_title_object_name:
     weight: 56
@@ -440,7 +405,7 @@ content:
     type: basic_string
     region: content
   field_mei_time_and_date:
-    weight: 54
+    weight: 2
     label: above
     settings:
       format_type: medium
@@ -508,6 +473,10 @@ content:
 hidden:
   created: true
   field_media_in_library: true
+  field_mei_iptc_category: true
+  field_mei_iptc_charset: true
+  field_mei_iptc_contact: true
+  field_mei_iptc_subcategories: true
   name: true
   thumbnail: true
   uid: true
