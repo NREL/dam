@@ -3,7 +3,7 @@ Character_Set: field_mei_iptc_charset
 Document_Title: field_mei_iptc_title_object_name
 Category: field_mei_iptc_category
 Subcategories: field_mei_iptc_subcategories
-Keywords: ''
+Keywords: field_mei_iptc_keywords
 Special_Instructions: field_mei_iptc_spec_instructions
 Creation_Date: ''
 Creation_Time: ''
