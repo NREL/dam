@@ -24,4 +24,4 @@ dependencies:
   - views_infinite_scroll
   - workbench_moderation
 version: 8.x-1.0
-package: Communications
+package: DAM
