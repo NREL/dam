@@ -10,7 +10,7 @@ Creation_Time: field_mei_iptc_creation_time
 Digital_Creation_Date: field_mei_iptc_dig_creation_date
 Digital_Creation_Time: field_mei_iptc_dig_creation_time
 Author_By_line: ''
-Author_Title: field_mei_iptc_creator_job_title
+Author_Title: ''
 City: field_mei_iptc_city
 Sublocation: field_mei_iptc_sublocation
 State: field_mei_iptc_state
