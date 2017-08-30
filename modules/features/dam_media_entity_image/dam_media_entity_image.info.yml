@@ -6,7 +6,6 @@ dependencies:
   - address
   - datetime
   - entity_browser
-  - exif
   - field
   - field_group
   - file
