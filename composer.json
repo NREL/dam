@@ -54,14 +54,14 @@
     },
     "require": {
         "nrel/communications": "~1.1.1.10",
-        "brightcove/api": "~1.0",
-        "drupal/decoupled_auth": "~1.0@alpha",
-        "drupal/default_content": "~1.0@alpha",
+        "brightcove/api": "^1.0",
+        "drupal/decoupled_auth": "^1.0@alpha",
+        "drupal/default_content": "^1.0@alpha",
         "drupal/elasticsearch_aws_connector": "5.x-dev",
         "drupal/elasticsearch_connector": "5.x-dev",
-        "drupal/file_entity": "~2.x-dev",
-        "drupal/page_manager": "~4.0",
-        "drupal/taxonomy_manager": "~1.x-dev",
+        "drupal/file_entity": "2.x-dev",
+        "drupal/page_manager": "^4.0",
+        "drupal/taxonomy_manager": "1.x-dev",
         "drupal/dropzonejs": "1.0.0-alpha7",
         "bower-asset/dropzone": "^5.1"
     }
