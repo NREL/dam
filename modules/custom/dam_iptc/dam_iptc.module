@@ -146,6 +146,7 @@ function dam_iptc_extract_iptc_into_entity($entity) {
             } else {
               $term_names = $value;
             }
+            $final_tids = [];
             foreach ($term_names AS $term_name) {
               // Check to see if this term already exists in this vocabulary
               $query = \Drupal::entityQuery('taxonomy_term');
@@ -162,8 +163,9 @@ function dam_iptc_extract_iptc_into_entity($entity) {
               } else {
                 $tid = key($tids);
               }
-              $entity->set($machine_field, $tid);
+              $final_tids[] = $tid;
             }
+            $entity->set($machine_field, $final_tids);
           } else {
             $entity->set($machine_field, $value);
           }
