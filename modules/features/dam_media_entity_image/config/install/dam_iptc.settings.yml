@@ -9,8 +9,8 @@ Creation_Date: field_mei_iptc_creation_date
 Creation_Time: field_mei_iptc_creation_time
 Digital_Creation_Date: field_mei_iptc_dig_creation_date
 Digital_Creation_Time: field_mei_iptc_dig_creation_time
-Author_By_line: ''
-Author_Title: ''
+Author_By_line: field_mei_iptc_creator_phtgrphr
+Author_Title: field_mei_iptc_creator_job_title
 City: field_mei_iptc_city
 Sublocation: field_mei_iptc_sublocation
 State: field_mei_iptc_state
@@ -18,8 +18,8 @@ Country_Code: field_mei_iptc_country_code
 Country: field_mei_iptc_country
 Original_Transmission_reference: field_mei_iptc_orig_trans_ref
 Headline: field_mei_iptc_headline
-Source: ''
-Photo_Source: ''
+Source: field_mei_iptc_credit
+Photo_Source: field_mei_iptc_source
 Copyright: field_mei_iptc_copyright
 Contact: field_mei_iptc_contact
 Caption: field_mei_iptc_desc_caption
