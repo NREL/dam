@@ -154,16 +154,12 @@ function dam_iptc_extract_iptc_into_entity($entity) {
               $query->condition('name', trim($term_name));
               $tids = $query->execute();
               if (count($tids) == 0) {
-                $term = \Drupal\taxonomy\Entity\Term::create([
-                  'vid' => $vocabulary,
-                  'name' => trim($term_name),
-                ]);
-                $term->save();
-                $tid = $term->id();
+                \Drupal::logger('dam_iptc')->notice("Keyword " . trim($term_name) . " not found when extracting keywords from image.");
               } else {
-                $tid = key($tids);
+                foreach ($tids AS $tid) {
+                  $final_tids[] = $tid;
+                }
               }
-              $final_tids[] = $tid;
             }
             $entity->set($machine_field, $final_tids);
           } else {
