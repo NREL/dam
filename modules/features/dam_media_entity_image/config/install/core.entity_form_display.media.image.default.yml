@@ -49,6 +49,7 @@ dependencies:
     - image.style.thumbnail
     - media_entity.bundle.image
   module:
+    - cshs
     - datetime
     - field_group
     - image
@@ -110,7 +111,7 @@ third_party_settings:
         - group_event_and_location
         - group_status
       parent_name: ''
-      weight: 4
+      weight: 3
       format_type: details
       format_settings:
         label: Metadata
@@ -145,7 +146,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 2
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -182,7 +183,7 @@ content:
     type: string_textarea
     region: content
   field_mei_iptc_country:
-    weight: 50
+    weight: 11
     settings:
       size: 60
       placeholder: ''
@@ -190,7 +191,7 @@ content:
     type: string_textfield
     region: content
   field_mei_iptc_country_code:
-    weight: 49
+    weight: 10
     settings:
       size: 60
       placeholder: ''
@@ -198,7 +199,7 @@ content:
     type: string_textfield
     region: content
   field_mei_iptc_creation_date:
-    weight: 43
+    weight: 4
     settings:
       size: 60
       placeholder: ''
@@ -206,7 +207,7 @@ content:
     type: string_textfield
     region: content
   field_mei_iptc_creation_time:
-    weight: 44
+    weight: 5
     settings:
       size: 60
       placeholder: ''
@@ -257,7 +258,7 @@ content:
     type: string_textfield
     region: content
   field_mei_iptc_dig_creation_date:
-    weight: 45
+    weight: 6
     settings:
       size: 60
       placeholder: ''
@@ -265,7 +266,7 @@ content:
     type: string_textfield
     region: content
   field_mei_iptc_dig_creation_time:
-    weight: 46
+    weight: 7
     settings:
       size: 60
       placeholder: ''
@@ -283,11 +284,11 @@ content:
   field_mei_iptc_keywords:
     weight: 23
     settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+      force_deepest: '1'
+      parent: '0'
+      level_labels: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: cshs
     region: content
   field_mei_iptc_orig_trans_ref:
     weight: 42
@@ -315,7 +316,7 @@ content:
     type: string_textarea
     region: content
   field_mei_iptc_state:
-    weight: 47
+    weight: 8
     settings:
       size: 60
       placeholder: ''
@@ -323,7 +324,7 @@ content:
     type: string_textfield
     region: content
   field_mei_iptc_sublocation:
-    weight: 48
+    weight: 9
     settings:
       size: 60
       placeholder: ''
@@ -360,17 +361,9 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     region: content
-  name:
-    type: string_textfield
-    weight: 1
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    region: content
   uid:
     type: entity_reference_autocomplete_tags
-    weight: 3
+    weight: 2
     region: content
     settings:
       match_operator: CONTAINS
@@ -396,3 +389,4 @@ hidden:
   field_provided_focal_length: true
   field_width: true
   field_xmp_orientation: true
+  name: true

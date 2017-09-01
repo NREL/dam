@@ -49,6 +49,7 @@ dependencies:
     - media_entity.bundle.image
   module:
     - datetime
+    - field_formatter_class
     - field_group
     - image
     - link
@@ -557,6 +558,16 @@ content:
       image_link: ''
     third_party_settings: {  }
     region: content
+  name:
+    type: string
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: true
+    third_party_settings:
+      field_formatter_class:
+        class: ''
 hidden:
   created: true
   field_media_in_library: true
@@ -564,6 +575,5 @@ hidden:
   field_mei_iptc_charset: true
   field_mei_iptc_contact: true
   field_mei_iptc_subcategories: true
-  name: true
   thumbnail: true
   uid: true

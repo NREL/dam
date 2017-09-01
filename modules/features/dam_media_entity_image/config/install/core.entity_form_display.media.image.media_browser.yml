@@ -14,6 +14,7 @@ dependencies:
     - field.field.media.image.field_mei_event
     - field.field.media.image.field_mei_iptc_category
     - field.field.media.image.field_mei_iptc_charset
+    - field.field.media.image.field_mei_iptc_city
     - field.field.media.image.field_mei_iptc_contact
     - field.field.media.image.field_mei_iptc_copyright
     - field.field.media.image.field_mei_iptc_country
@@ -91,6 +92,7 @@ hidden:
   field_mei_event: true
   field_mei_iptc_category: true
   field_mei_iptc_charset: true
+  field_mei_iptc_city: true
   field_mei_iptc_contact: true
   field_mei_iptc_copyright: true
   field_mei_iptc_country: true
