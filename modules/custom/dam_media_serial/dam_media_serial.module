@@ -1,0 +1,115 @@
+<?php
+
+/**
+ * @file
+ * Contains dam_media_serial.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\node\Entity\Node;
+use Drupal\dam_media_serial\Dam_Media_SerialStorageInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dam_media_serial_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dam_media_serial module.
+    case 'help.page.dam_media_serial':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Serial Field Type for Media Bundles.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_create().
+ *
+ * @inheritdoc
+ */
+function dam_media_serial_field_config_create(FieldConfig $field) {
+  if ($field->getType() == 'dam_media_serial' && !$field->isSyncing() && !$field->isDeleted()) {
+    // Create the assistant storage.
+    /** @var Dam_Media_SerialStorageInterface $serialStorage */
+    $serialStorage = \Drupal::getContainer()->get('serial.sql_storage');
+    $storageName = $serialStorage->createStorageName(
+      $field->getTargetEntityTypeId(),
+      $field->getTargetBundle(),
+      $field->getFieldStorageDefinition()->getName()
+    );
+    $serialStorage->createStorageFromName($storageName);
+
+    // Commit the change before setting values for existing entities.
+    $field->save();
+
+    // Set serial values for existing entities.
+    $oldCount = $serialStorage->initOldEntries(
+      $field->getTargetEntityTypeId(),
+      $field->getTargetBundle(),
+      $field->getFieldStorageDefinition()->getName()
+    );
+
+    if ($oldCount > 0) {
+      drupal_set_message(t('Dam_Media_Serial values have been automatically set for %count existing entities.', array(
+        '%count' => $oldCount,
+      )));
+    }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ *
+ * @inheritdoc
+ */
+function dam_media_serial_field_config_delete(FieldConfig $field) {
+  if ($field->getType() == 'dam_media_serial') {
+    $serialStorage = \Drupal::getContainer()->get('serial.sql_storage');
+    $storageName = $serialStorage->createStorageName(
+      $field->getTargetEntityTypeId(),
+      $field->getTargetBundle(),
+      $field->getFieldStorageDefinition()->getName()
+    );
+    $serialStorage->dropStorageFromName($storageName);
+  }
+}
+
+/**
+ * Implements hook_clone_node_alter().
+ *
+ * @todo to review once node_clone have a stable release
+ */
+function dam_media_serial_clone_node_alter(Node &$node, $context) {
+  // Reset values of all dam_media_serial fields when cloning a node.
+  foreach (\Drupal::entityManager()->getFieldDefinitions('node', $node->bundle()) as $field_name => $field_definition) {
+    if (!empty($field_definition->getTargetBundle())
+      && $field_definition->getType() == Dam_Media_SerialStorageInterface::SERIAL_FIELD_TYPE) {
+      $node->{$field_name} = [];
+    }
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dam_media_serial_theme() {
+  // Register the theme for the dam_media_serial default.
+  return array('dam_media_serial_default' => array('variables' => array('dam_media_serial_id' => NULL)));
+}
+
+/**
+ * Theme function for the dam_media_serial default.
+ *
+ * @param array $variables
+ *   Theme variables.
+ *
+ * @return array
+ *   Theme variables.
+ */
+function theme_dam_media_serial_default(array $variables) {
+  return $variables['dam_media_serial_id'];
+}

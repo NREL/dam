@@ -1,0 +1,4 @@
+services:
+  dam_media_serial.sql_storage:
+    class:  Drupal\dam_media_serial\DamMediaSerialSQLStorage
+    arguments: ['@entity.query', '@entity_type.manager']

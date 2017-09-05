@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the DAM Media Serial module.
+ */
+
+/**
+ * Implements hook_schema().
+ *
+ * Return the schema of all the assistant tables (one per field instance).
+ */
+function dam_media_serial_schema() {
+    /** @var \Drupal\dam_media_serial\Dam_Media_SerialStorageInterface $serialStorage */
+    $serialStorage = \Drupal::getContainer()->get('dam_media_serial.sql_storage');
+    $tableSchema = $serialStorage->getSchema();
+    $schema = array();
+    foreach ($serialStorage->getAllFields() as $entityTypeId => $entry) {
+        foreach ($entry as $fieldKey => $fieldInstance) {
+            foreach ($fieldInstance['bundles'] as $bundle) {
+                $schema[$serialStorage->createStorageName($entityTypeId, $bundle, $fieldKey)] = $tableSchema;
+            }
+        }
+    }
+    return $schema;
+}
