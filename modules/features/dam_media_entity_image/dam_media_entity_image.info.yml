@@ -5,6 +5,7 @@ core: 8.x
 dependencies:
   - address
   - cshs
+  - dam_iptc
   - datetime
   - entity_browser
   - field
