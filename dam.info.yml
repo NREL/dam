@@ -27,6 +27,7 @@ dependencies:
     - coffee
     - taxonomy_manager
     - field_formatter
+    - communications_sso
 base profile:
   name: communications
 version: '8.x-1.00'
