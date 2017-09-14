@@ -1,8 +1,0 @@
-name: DAM Media Serial
-type: module
-description: Serial Field Type for Media Bundles.
-core: 8.x
-package: Field types
-dependencies:
-  - drupal:field
-
