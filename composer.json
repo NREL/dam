@@ -62,6 +62,7 @@
         "drupal/file_entity": "2.x-dev",
         "drupal/page_manager": "^4.0",
         "drupal/taxonomy_manager": "1.x-dev",
-        "drupal/file_download": "^1.0"
+        "drupal/file_download": "^1.0",
+        "drupal/protected_file": "^1.1"
     }
 }
