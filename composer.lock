@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "93f8927ac8ce7c9942bcae613a759570",
+    "content-hash": "830d5bf266998b82da370b058438b506",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -210,16 +210,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.36.11",
+            "version": "3.36.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "fd0aacadab2f5ae4a43b91bccc164299c5cef7f0"
+                "reference": "8dfd5056007909cffaa6a344a20b88716deba753"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/fd0aacadab2f5ae4a43b91bccc164299c5cef7f0",
-                "reference": "fd0aacadab2f5ae4a43b91bccc164299c5cef7f0",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/8dfd5056007909cffaa6a344a20b88716deba753",
+                "reference": "8dfd5056007909cffaa6a344a20b88716deba753",
                 "shasum": ""
             },
             "require": {
@@ -286,7 +286,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2017-09-19T22:09:23+00:00"
+            "time": "2017-09-20T22:14:51+00:00"
         },
         {
             "name": "behat/mink",
@@ -8710,20 +8710,20 @@
         },
         {
             "name": "nrel/communications",
-            "version": "1.1.1.17",
+            "version": "1.1.1.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/NREL/communications.git",
-                "reference": "6e95d3e2003bde23b47b416ef720813e0beba863"
+                "reference": "20535463d0ce7942d180fabbc0868f2bebefa9bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/NREL/communications/zipball/6e95d3e2003bde23b47b416ef720813e0beba863",
-                "reference": "6e95d3e2003bde23b47b416ef720813e0beba863",
+                "url": "https://api.github.com/repos/NREL/communications/zipball/20535463d0ce7942d180fabbc0868f2bebefa9bc",
+                "reference": "20535463d0ce7942d180fabbc0868f2bebefa9bc",
                 "shasum": ""
             },
             "require": {
-                "acquia/lightning": "^2.1.7",
+                "acquia/lightning": "^2.1.8",
                 "aws/aws-sdk-php": "^3.31",
                 "behat/mink-zombie-driver": "^1.4",
                 "components/highlightjs": "9.7.*",
@@ -8820,7 +8820,7 @@
             ],
             "description": "Communications profile is the de-facto Drupal swiss army knife for NREL sites.",
             "homepage": "https://github.com/NREL/communications",
-            "time": "2017-09-18T19:53:50+00:00"
+            "time": "2017-09-21T15:45:23+00:00"
         },
         {
             "name": "oomphinc/composer-installers-extender",
