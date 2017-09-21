@@ -31,6 +31,10 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
         }
     ],
     "extra": {
@@ -53,7 +57,7 @@
         }
     },
     "require": {
-        "nrel/communications": "^1.1.1.16",
+        "nrel/communications": "^1.1.1.18",
         "brightcove/api": "^1.0",
         "drupal/decoupled_auth": "^1.0@alpha",
         "drupal/default_content": "^1.0@alpha",
